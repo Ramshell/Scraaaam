@@ -7,9 +7,5 @@ const baseTaskSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
 })
 
-baseTaskSchema.methods.addTask = task => {
-    this.tasks.push(task)
-}
-
-const BaseTask = mongoose.model('Contributor', baseTaskSchema)
+const BaseTask = mongoose.model('BaseTask', baseTaskSchema)
 export default BaseTask

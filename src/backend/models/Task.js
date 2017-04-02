@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import BaseTask from 'BaseTask'
+import BaseTask from '../models/BaseTask'
 
 const taskSchema = new mongoose.Schema({
     parent: {type: mongoose.Schema.Types.ObjectId, ref: 'BaseTask'},
