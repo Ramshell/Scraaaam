@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import ScraaaamTemplate from '../templates/app.html'
 
 @Component({
   selector: 'app-view',
-  template: `<h1>Bienvenidos a {{name}}</h1>`
+  template: ScraaaamTemplate
 })
 export default class AppComponent {
   constructor() {
