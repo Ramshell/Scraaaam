@@ -28,7 +28,7 @@
     "html-webpack-plugin": "^2.28.0",
     "json-loader": "^0.5.4",
     "raw-loader": "^0.5.1",
-    "webpack": "^2.2.1"
+    "webpack": "^2.3.3"
   },
   "dependencies": {
     "@angular/common": "~2.4.0",

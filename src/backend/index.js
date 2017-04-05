@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/projects')
 const app = express()
 app.use(bodyParser.json())
 app.use(routes)
+app.use(express.static(__dirname + "/../../dist/frontend"))
 
 
 // Express startup

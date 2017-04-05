@@ -3,6 +3,10 @@ logs
 *.log
 npm-debug.log*
 
+#webpack
+dist
+dist/*
+
 # Runtime data
 pids
 *.pid
