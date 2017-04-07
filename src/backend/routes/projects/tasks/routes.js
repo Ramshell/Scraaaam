@@ -1,6 +1,6 @@
 import express from 'express'
-import Task from '../../models/Task.js'
-import BaseTask from '../../models/BaseTask.js'
+import Task from '../../../models/Task.js'
+import BaseTask from '../../../models/BaseTask.js'
 
 let router = express.Router({mergeParams: true})
 
@@ -45,12 +45,12 @@ router.post('/:parentTask', (req, res, next) => {
             parentTask.tasks.push(aTask)
             parentTask.save()
         })
-        .then(_ => res.status(201).json(aTask))
+        .then(savedParentTask => res.status(201).json(aTask))
         .catch(next)
 })
 
 router.get('/:aTask', (req, res, next) => {
-    req.aTask.populate('tasks').execPopulate()
+    req.aTask.populate('tasks project parent').execPopulate()
         .then(task => res.json(task))
         .catch(next)
 })
