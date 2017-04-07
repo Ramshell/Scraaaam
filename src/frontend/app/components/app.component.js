@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import ScraaaamTemplate from '../templates/app.html'
 
 @Component({
@@ -7,6 +7,6 @@ import ScraaaamTemplate from '../templates/app.html'
 })
 export default class AppComponent {
   constructor() {
-    this.name = 'Scraaaam';
+    this.name = 'Scraaaam'
   }
 }
