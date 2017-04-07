@@ -9,8 +9,13 @@ import ProjectService from '../services/project.service'
 })
 export default class AppComponent {
   constructor(projectService) {
-    this.name = 'Scraaaam'
+    this.data = { projectTitle: '' }
     this.projectService = projectService
+    this.projects = projectService.projects
+  }
+
+  searchProjects(){
+    this.projectService.filterProjects(this.data.projectTitle)
   }
 }
 

@@ -14,6 +14,7 @@ import ProjectDetailComponent from './app/components/projectDetail.component'
 import ProjectListComponent from './app/components/projectList.component'
 
 let router = RouterModule.forRoot([
+  { path: '', redirectTo: '/projects', pathMatch: 'full' },
   { path: 'projects', component: ProjectListComponent },
   { path: 'projects/:id', component: ProjectDetailComponent }
 ], { useHash: true })

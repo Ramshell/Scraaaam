@@ -6,6 +6,7 @@ export default class ProjectService {
 
   constructor(http) {
     this.http = http
+    this._filter = ''
     this._projects = [
       { _id:"58d", title: "Cool project", description: "nothing", tasks: [] },
       { _id: "57d", title: "Other Cool project", description: "anything", tasks: [] }
@@ -13,7 +14,11 @@ export default class ProjectService {
   }
 
   get projects() {
-    return this._projects
+    return this._projects.filter((x) => x.title.includes(this._filter))
+  }
+
+  filterProjects(filter) {
+    this._filter = filter
   }
 
   getProject(id) {
