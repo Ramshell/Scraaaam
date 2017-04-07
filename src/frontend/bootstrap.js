@@ -9,9 +9,12 @@ import { HttpModule } from '@angular/http'; import 'rxjs/add/operator/toPromise'
 import { RouterModule }  from '@angular/router';
 
 import AppComponent from './app/components/app.component'
+import ProjectComponent from './app/components/project.component'
 import ProjectDetailComponent from './app/components/projectDetail.component'
+import ProjectListComponent from './app/components/projectList.component'
 
 let router = RouterModule.forRoot([
+  { path: 'projects', component: ProjectListComponent },
   { path: 'projects/:id', component: ProjectDetailComponent }
 ], { useHash: true })
 
@@ -19,6 +22,8 @@ let router = RouterModule.forRoot([
   imports: [ router, BrowserModule, FormsModule, HttpModule ],
   styleUrls: ['./style.css'],
   declarations: [
+    ProjectListComponent,
+    ProjectComponent,
     ProjectDetailComponent,
     AppComponent
   ],

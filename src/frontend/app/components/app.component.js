@@ -1,12 +1,19 @@
 import { Component } from '@angular/core'
 import ScraaaamTemplate from '../templates/app.html'
+import ProjectService from '../services/project.service'
 
 @Component({
   selector: 'app-view',
-  template: ScraaaamTemplate
+  template: ScraaaamTemplate,
+  providers: [ ProjectService ]
 })
 export default class AppComponent {
-  constructor() {
+  constructor(projectService) {
     this.name = 'Scraaaam'
+    this.projectService = projectService
   }
 }
+
+AppComponent.parameters = [
+  [ProjectService]
+]

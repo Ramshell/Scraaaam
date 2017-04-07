@@ -1,0 +1,9 @@
+<div [ngSwitch]="project">
+  <b *ngSwitchCase="undefined">Please select a project</b>
+  <div *ngSwitchDefault class="panel panel-default">
+    <div class="panel-heading">{{project.title}}</div>
+    <div class="panel-body">
+      {{project.description}}
+    </div>
+  </div>
+</div>
