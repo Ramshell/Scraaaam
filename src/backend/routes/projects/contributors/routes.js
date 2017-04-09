@@ -9,23 +9,6 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-// router.put('/', (req, res, next) => {
-//     const project = req.aProject
-//     Contributor.findById(req.body._id)
-//         .then(aContributor => {
-//             aContributor.projects.push(project)
-//             aContributor.save()
-//                 .then(savedContributor => {
-//                     project.contributors.push(savedContributor)
-//                     project.save()
-//                         .then(savedProject => res.status(200).json(savedContributor))
-//                         .catch(next)
-//                 })
-//                 .catch(next)
-//         })
-//         .catch(next)
-// })
-
 router.put('/', (req, res, next) => {
     const project = req.aProject
     let contributor = {}

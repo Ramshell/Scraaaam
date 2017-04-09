@@ -1,19 +1,10 @@
 import express from 'express'
-import Contributor from '../../models/Contributor.js'
+import Contributor from '../../models/Contributor'
+import {paramById} from '../utils'
 
 let router = express.Router()
 
-router.param('aContributor', (req, res, next, value) => {
-    Contributor.findById(value)
-        .then(aContributor => {
-            if (! aContributor ) {
-                throw new Error(`Couldn't find contributor ${value}`)
-            }
-            req.aContributor = aContributor
-            next()
-        })
-        .catch(next)
-})
+paramById(router, Contributor, 'aContributor')
 
 router.get('/', (req, res, next) => {
     Contributor.find()

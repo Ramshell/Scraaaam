@@ -2,20 +2,11 @@ import express from 'express'
 import Project from '../../models/Project.js'
 import projectTasksRouter from '../projects/tasks/routes.js'
 import projectContributorsRouter from '../projects/contributors/routes.js'
+import {paramById} from '../utils'
 
 let router = express.Router()
 
-router.param('aProject', (req, res, next, value) => {
-    Project.findById(value)
-        .then(aProject => {
-            if (!aProject) {
-                throw new Error(`Couldn't find project ${value}`)
-            }
-            req.aProject = aProject
-            next()
-        })
-        .catch(next)
-})
+paramById(router, Project, 'aProject')
 
 router.get('/', (req, res, next) => {
     Project.find()

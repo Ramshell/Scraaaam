@@ -1,32 +1,12 @@
 import express from 'express'
 import Task from '../../../models/Task.js'
 import BaseTask from '../../../models/BaseTask.js'
+import {paramById} from '../../utils'
 
 let router = express.Router({mergeParams: true})
 
-router.param('aTask', (req, res, next, value) => {
-    Task.findById(value)
-        .then(aTask => {
-            if (!aTask) {
-                throw new Error(`Couldn't find task ${value}`)
-            }
-            req.aTask = aTask
-            next()
-        })
-        .catch(next)
-})
-
-router.param('parentTask', (req, res, next, value) => {
-    BaseTask.findById(value)
-        .then(parentTask => {
-            if (!parentTask) {
-                throw new Error(`Couldn't find task or project ${value}`)
-            }
-            req.parentTask = parentTask
-            next()
-        })
-        .catch(next)
-})
+paramById(router, Task, 'aTask')
+paramById(router, BaseTask, 'parentTask')
 
 router.get('/', (req, res, next) => {
     Task.find({project: req.aProject._id})
