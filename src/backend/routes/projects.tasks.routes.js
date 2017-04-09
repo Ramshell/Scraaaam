@@ -1,7 +1,7 @@
 import express from 'express'
-import Task from '../../../models/Task.js'
-import BaseTask from '../../../models/BaseTask.js'
-import {paramById} from '../../utils'
+import Task from '../models/Task.js'
+import BaseTask from '../models/BaseTask.js'
+import {paramById} from './utils'
 
 let router = express.Router({mergeParams: true})
 

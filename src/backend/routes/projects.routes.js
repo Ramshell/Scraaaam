@@ -1,8 +1,8 @@
 import express from 'express'
-import Project from '../../models/Project.js'
-import projectTasksRouter from '../projects/tasks/routes.js'
-import projectContributorsRouter from '../projects/contributors/routes.js'
-import {paramById} from '../utils'
+import Project from '../models/Project.js'
+import projectTasksRouter from './projects.tasks.routes.js'
+import projectContributorsRouter from './projects.contributors.routes.js'
+import {paramById} from './utils'
 
 let router = express.Router()
 

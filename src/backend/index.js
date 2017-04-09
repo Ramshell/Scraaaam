@@ -1,7 +1,7 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import projectRoutes from './routes/projects/routes.js'
-import contributorRoutes from './routes/contributors/routes.js'
+import express from "express";
+import bodyParser from "body-parser";
+import projectRoutes from "./routes/projects.routes.js";
+import contributorRoutes from "./routes/contributors.routes.js";
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/projects')

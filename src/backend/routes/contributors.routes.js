@@ -1,6 +1,6 @@
 import express from 'express'
-import Contributor from '../../models/Contributor'
-import {paramById} from '../utils'
+import Contributor from '../models/Contributor'
+import {paramById} from './utils'
 
 let router = express.Router()
 

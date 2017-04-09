@@ -1,5 +1,5 @@
 import express from 'express'
-import Contributor from '../../../models/Contributor.js'
+import Contributor from '../models/Contributor.js'
 
 let router = express.Router({mergeParams: true})
 
