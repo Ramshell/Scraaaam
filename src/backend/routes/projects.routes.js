@@ -27,6 +27,11 @@ router.get('/:aProject', (req, res, next) => {
         .catch(next)
 })
 
+router.delete('/:aProject', (req, res) => {
+    req.aProject.remove()
+    res.sendStatus(202)
+})
+
 router.use('/:aProject/tasks', projectTasksRouter)
 router.use('/:aProject/contributors', projectContributorsRouter)
 export default router

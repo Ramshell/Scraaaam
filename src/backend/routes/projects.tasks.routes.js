@@ -35,4 +35,9 @@ router.get('/:aTask', (req, res, next) => {
         .catch(next)
 })
 
+router.delete('/:aTask', (req, res) => {
+    req.aTask.remove()
+    res.sendStatus(202)
+})
+
 export default router
