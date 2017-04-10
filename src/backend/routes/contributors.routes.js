@@ -26,4 +26,9 @@ router.get('/:aContributor', (req, res, next) => {
         .catch(next)
 })
 
+router.delete('/:aContributor', (req, res) => {
+    req.aContributor.remove()
+    res.sendStatus(202)
+})
+
 export default router
