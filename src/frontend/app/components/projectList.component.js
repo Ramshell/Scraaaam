@@ -9,7 +9,7 @@ import ProjectService from '../services/project.service';
 })
 export default class ProjectListComponent {
   constructor(projectService) {
-    this.projects = projectService.projects;
+    this.projectService = projectService;
   }
 }
 
