@@ -1,14 +1,9 @@
 import mongoose from 'mongoose'
+import BaseTask from '../models/BaseTask'
 
 const projectSchema = new mongoose.Schema({
-  name: String,
-  milestones: [String],
-  createdAt: { type: Date, default: Date.now },
+    contributors: [{type: mongoose.Schema.Types.ObjectId, ref: 'Contributor'}]
 })
 
-projectSchema.methods.add = function(milestone) {
-  this.milestones.push(milestone)
-}
-
-const Project = mongoose.model('Project', projectSchema)
+const Project = BaseTask.discriminator('Project', projectSchema)
 export default Project
