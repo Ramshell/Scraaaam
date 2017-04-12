@@ -19,10 +19,8 @@ export default class ProjectService {
   }
 
   filterProjects(filter) {
-    console.log(this._projects)
     this._filter = filter
     this._projects = this.projects
-    console.log(this.projects)
   }
 
   getProject(id) {
