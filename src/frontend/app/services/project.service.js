@@ -7,11 +7,10 @@ export default class ProjectService {
   constructor(http) {
     this.http = http
     this._filter = ''
-    this._allProjects = [
-      { _id:"58d", title: "Cool project", description: "nothing", tasks: [] },
-      { _id: "57d", title: "Other Cool project", description: "anything", tasks: [] }
-    ]
-    this._projects = this._allProjects
+    this._allProjects = []
+    this.http.get("/projects").toPromise()
+            .then(response => this._allProjects.push(...response.json()))
+            .catch(err => console.log(err))
   }
 
   get projects() {
@@ -20,17 +19,19 @@ export default class ProjectService {
 
   filterProjects(filter) {
     this._filter = filter
-    this._projects = this.projects
+    this.projects
   }
 
   getProject(id) {
-    return this._projects[this._projects.map((x) => x._id).indexOf(id)]
+    return this.http.get(`/projects/${id}`).toPromise()
+            .then(response => response.json());
   }
 
-  create(data) {
-    this._allProjects.push(data)
-    console.log(data)
-    this._projects = this.projects
+  create(project) {
+    this.http.post("/projects", JSON.stringify(project), { headers:{'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(theProject => { this._allProjects.push(theProject.json()); this.projects })
+            .catch(err => console.log(err))
   }
 }
 

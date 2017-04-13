@@ -18,7 +18,9 @@ export default class ProjectDetailComponent {
   ngOnInit() {
     this.project = {}
     this.route.params.subscribe(params => {
-      this.project = this.projectService.getProject(params.id)
+      this.projectService.getProject(params.id)
+        .then(project => this.project = project)
+        .catch(e => console.log(e))
     })
   }
 }
