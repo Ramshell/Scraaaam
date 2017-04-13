@@ -33,6 +33,10 @@ export default class ProjectService {
             .then(theProject => { this._allProjects.push(theProject.json()); this.projects })
             .catch(err => console.log(err))
   }
+
+  create_task(id, task){
+    
+  }
 }
 
 ProjectService.parameters = [

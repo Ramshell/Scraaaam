@@ -2,6 +2,7 @@
   <div class="panel-heading">{{project.title}}</div>
   <div class="panel-body">
     {{project.description}}
+    <taskList [tasks]="project.tasks"></taskList>
   </div>
 </div>
 <a class="btn btn-default btn-inverse" [routerLink]="['/projects']">Atras</a>
