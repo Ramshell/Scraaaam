@@ -26,6 +26,12 @@ export default class ProjectService {
   getProject(id) {
     return this._projects[this._projects.map((x) => x._id).indexOf(id)]
   }
+
+  create(data) {
+    this._allProjects.push(data)
+    console.log(data)
+    this._projects = this.projects
+  }
 }
 
 ProjectService.parameters = [

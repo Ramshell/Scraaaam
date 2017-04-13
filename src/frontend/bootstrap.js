@@ -12,6 +12,7 @@ import AppComponent from './app/components/app.component'
 import ProjectComponent from './app/components/project.component'
 import ProjectDetailComponent from './app/components/projectDetail.component'
 import ProjectListComponent from './app/components/projectList.component'
+import NewProjectComponent from './app/components/newProject.component'
 
 let router = RouterModule.forRoot([
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
@@ -21,8 +22,9 @@ let router = RouterModule.forRoot([
 
 @NgModule({
   imports: [ router, BrowserModule, FormsModule, HttpModule ],
-  styleUrls: ['./style.css'],
+  styleUrls: ['./style.css', './buttons.css'],
   declarations: [
+    NewProjectComponent,
     ProjectListComponent,
     ProjectComponent,
     ProjectDetailComponent,

@@ -1,3 +1,4 @@
-<div class="list-group">
+<ul class="list-group">
   <project *ngFor="let item of projectService.projects" [project]="item" [routerLink]="['/projects', item._id]"></project>
-</div>
+</ul>
+<newProject></newProject>

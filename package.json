@@ -42,6 +42,7 @@
     "@angular/router": "^3.4.10",
     "body-parser": "^1.16.0",
     "bootstrap": "^3.3.7",
+    "bootstrap-material-design": "^0.5.10",
     "express": "^4.14.0",
     "mongoose": "^4.9.2",
     "reflect-metadata": "^0.1.10",
