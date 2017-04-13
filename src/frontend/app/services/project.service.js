@@ -24,7 +24,10 @@ export default class ProjectService {
 
   getProject(id) {
     return this.http.get(`/projects/${id}`).toPromise()
-            .then(response => response.json());
+            .then(response =>{
+              this.currentProject = response.json();
+              return response.json()
+            });
   }
 
   create(project) {
@@ -34,8 +37,13 @@ export default class ProjectService {
             .catch(err => console.log(err))
   }
 
-  create_task(id, task){
-    
+  create_task(parentTask, task){
+    const projId = parentTask.contributors ? parentTask._id : parentTask.parent._id
+    console.log(projId)
+    this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), { headers:{'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(theTask => parentTask.tasks.push(theTask.json()))
+            .catch(err => console.log(err))
   }
 }
 

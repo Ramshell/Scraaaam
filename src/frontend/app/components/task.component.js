@@ -3,7 +3,7 @@ import TaskTemplate from '../templates/project.html';
 
 @Component({
   selector: 'task',
-  inputs: [ 'task' ],
+  inputs: [ 'project' ],
   template: TaskTemplate
 })
 

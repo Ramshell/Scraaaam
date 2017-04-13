@@ -18,7 +18,7 @@ export default class NewTaskComponent {
   }
 
   create_task() {
-    this.projectService.create_task(this.task._id, this.data)
+    this.projectService.create_task(this.task, this.data)
     this.setNewTask()
   }
 }

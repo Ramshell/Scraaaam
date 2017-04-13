@@ -3,6 +3,7 @@
   <div class="panel-body">
     {{project.description}}
     <taskList [tasks]="project.tasks"></taskList>
+    <newTask [task]="project"></newTask>
   </div>
 </div>
 <a class="btn btn-default btn-inverse" [routerLink]="['/projects']">Atras</a>
