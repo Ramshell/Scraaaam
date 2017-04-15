@@ -3,7 +3,7 @@ import ProjectTemplate from '../templates/project.html';
 
 @Component({
   selector: 'project',
-  inputs: [ 'project' ],
+  inputs: [ 'data' ],
   template: ProjectTemplate
 })
 

@@ -5,7 +5,7 @@ import ProjectService from '../services/project.service';
 
 @Component({
   selector: 'taskList',
-  inputs: ['tasks'],
+  inputs: ['tasks', 'parent', 'project'],
   template: TaskListTemplate
 })
 export default class TaskListComponent {

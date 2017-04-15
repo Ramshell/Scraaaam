@@ -5,8 +5,8 @@
       {{data.description}}
     </div>
     <div class="container-fluid">
-      <taskList [tasks]="data.tasks" [parent]="data" [project]="data"></taskList>
+      <taskList [tasks]="data.tasks" [parent]="data" [project]="data.project"></taskList>
     </div>
   </div>
 </div>
-<a class="btn btn-default btn-inverse" [routerLink]="['/projects']">Back</a>
+<a class="btn btn-default btn-inverse" [routerLink]="['/projects', data.project._id, 'tasks', data._id]">Back</a>
