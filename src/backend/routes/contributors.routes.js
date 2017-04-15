@@ -14,7 +14,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     const aContributor = new Contributor(req.body)
-
     aContributor.save()
         .then(someContributor => res.status(201).json(someContributor))
         .catch(next)
@@ -29,6 +28,12 @@ router.get('/:aContributor', (req, res, next) => {
 router.delete('/:aContributor', (req, res) => {
     req.aContributor.delete()
     res.sendStatus(202)
+})
+
+router.put('/:aContributor', (req, res, next) => {
+    Contributor.findByIdAndUpdate(req.aContributor._id, req.body)
+        .then(res.sendStatus(200))
+        .catch(next)
 })
 
 export default router

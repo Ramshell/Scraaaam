@@ -31,4 +31,10 @@ router.delete('/:aTask', (req, res) => {
     res.sendStatus(202)
 })
 
+router.put('/:aTask', (req, res, next) => {
+    BaseTask.findByIdAndUpdate(req.aTask._id, req.body)
+        .then(res.sendStatus(200))
+        .catch(next)
+})
+
 export default router

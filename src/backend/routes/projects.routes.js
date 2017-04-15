@@ -32,6 +32,12 @@ router.delete('/:aProject', (req, res) => {
     res.sendStatus(202)
 })
 
+router.put('/:aProject', (req, res, next) => {
+    Project.findByIdAndUpdate(req.aProject._id, req.body)
+        .then(res.sendStatus(200))
+        .catch(next)
+})
+
 router.use('/:aProject/tasks', projectTasksRouter)
 router.use('/:aProject/contributors', projectContributorsRouter)
 export default router
