@@ -1,5 +1,9 @@
-<ul class="list-group">
-  <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
-  </task>
-</ul>
+<div *ngIf="!task.tasks || task.tasks.length == 0"> <h4><span class="label label-default">No tasks</span></h4> </div>
+<div *ngIf="task.tasks && task.tasks.length > 0">
+  <h4><span class="label label-default">Tasks</span></h4>
+  <ul class="list-group">
+    <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
+    </task>
+  </ul>
+</div>
 <newTask [task]="task"></newTask>

@@ -1,12 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">{{data.title}}</div>
   <div class="panel-body">
-    <div class="container">
-      {{data.description}}
-    </div>
-    <div class="container-fluid">
-      <taskList [task]="data"></taskList>
-    </div>
+    {{data.description}}
   </div>
 </div>
+<taskList [task]="data"></taskList>
 <a class="btn btn-default btn-inverse" [routerLink]="['/projects']">Back</a>
