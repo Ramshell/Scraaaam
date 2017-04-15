@@ -5,12 +5,11 @@ import ProjectService from '../services/project.service';
 
 @Component({
   selector: 'taskList',
-  inputs: ['tasks', 'parent', 'project'],
+  inputs: ['task' ],
   template: TaskListTemplate
 })
 export default class TaskListComponent {
   constructor(projectService) {
-    this.tasks = []
     this.projectService = projectService;
   }
 }

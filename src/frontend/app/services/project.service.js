@@ -35,8 +35,7 @@ export default class ProjectService {
   }
 
   create_task(parentTask, task){
-    const projId = parentTask.contributors ? parentTask._id : parentTask.parent._id
-    console.log(projId)
+    const projId = parentTask.contributors ? parentTask._id : parentTask.project._id
     this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), { headers:{'Content-Type': 'application/json'}})
             .toPromise()
             .then(theTask => parentTask.tasks.push(theTask.json()))

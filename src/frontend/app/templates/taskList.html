@@ -1,4 +1,5 @@
 <ul class="list-group">
-  <task *ngFor="let item of tasks" [data]="item" [routerLink]="['/projects', project._id, 'tasks', item._id]"></task>
+  <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
+  </task>
 </ul>
-<newTask [task]="parent"></newTask>
+<newTask [task]="task"></newTask>

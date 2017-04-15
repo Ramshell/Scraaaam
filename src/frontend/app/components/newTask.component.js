@@ -14,7 +14,7 @@ export default class NewTaskComponent {
   }
 
   setNewTask() {
-    this.data = { title: '', description: '', tasks: [] }
+    this.data = { title: '', description: '', tasks: [], category: 'Milestone' }
   }
 
   create_task() {
