@@ -13,14 +13,8 @@ taskSchema.pre('remove', function (next) {
 })
 
 taskSchema.methods.delete = function () {
-    BaseTask.findById(this.parent)
-        .then(parentTask => {
-            parentTask.tasks = parentTask.tasks.filter(task => task !== this._id)
-            parentTask.save()
-        })
-        .then(_ => {
-            this.remove()
-        })
+    BaseTask.findByIdAndUpdate(this.parent, {$pullAll: {tasks: [this._id]}})
+        .then(_ => this.remove())
 }
 
 const Task = BaseTask.discriminator('Task', taskSchema)

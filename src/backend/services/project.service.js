@@ -14,4 +14,19 @@ service.addContributor = (aProject, aContributor) => {
         })
 }
 
+service.addSubtask = (aProject, aParentTask, aTask) => {
+    let task = aTask
+    task.project = aProject
+    task.parent = aParentTask
+    return task.save()
+        .then(savedTask => {
+            task = savedTask
+            aParentTask.tasks.push(task)
+            return aParentTask.save()
+        })
+        .then(savedParent => {
+            return {parent: savedParent, task: task}
+        })
+}
+
 export default service

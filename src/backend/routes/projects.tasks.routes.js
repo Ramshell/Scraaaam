@@ -2,6 +2,7 @@ import express from 'express'
 import Task from '../models/Task.js'
 import BaseTask from '../models/BaseTask.js'
 import {paramById} from './utils'
+import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
 
@@ -15,17 +16,8 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:parentTask', (req, res, next) => {
-    const parentTask = req.parentTask
-    let aTask = new Task(req.body)
-    aTask.project = req.aProject
-    aTask.parent = parentTask
-    aTask.save()
-        .then(savedTask => {
-            aTask = savedTask
-            parentTask.tasks.push(aTask)
-            parentTask.save()
-        })
-        .then(savedParentTask => res.status(201).json(aTask))
+    ProjectService.addSubtask(req.aProject, req.parentTask, new Task(req.body))
+        .then(updated => res.status(201).json(updated.task))
         .catch(next)
 })
 
