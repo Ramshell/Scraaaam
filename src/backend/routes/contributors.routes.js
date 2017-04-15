@@ -27,7 +27,7 @@ router.get('/:aContributor', (req, res, next) => {
 })
 
 router.delete('/:aContributor', (req, res) => {
-    req.aContributor.remove()
+    req.aContributor.delete()
     res.sendStatus(202)
 })
 

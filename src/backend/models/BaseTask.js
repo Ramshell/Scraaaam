@@ -7,10 +7,9 @@ const baseTaskSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
 })
 
-const BaseTask = mongoose.model('BaseTask', baseTaskSchema)
-
-baseTaskSchema.pre('remove', function (next) {
-    BaseTask.remove({_id: {'$in': this.tasks}}).exec(_ => next())
+baseTaskSchema.pre('delete', function (next) {
+    console.log(`Deleting ${this.__t}: ${this._id}`)
 })
 
+const BaseTask = mongoose.model('BaseTask', baseTaskSchema)
 export default BaseTask

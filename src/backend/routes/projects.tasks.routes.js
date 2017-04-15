@@ -36,7 +36,7 @@ router.get('/:aTask', (req, res, next) => {
 })
 
 router.delete('/:aTask', (req, res) => {
-    req.aTask.remove()
+    req.aTask.delete()
     res.sendStatus(202)
 })
 

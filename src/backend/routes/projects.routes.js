@@ -28,7 +28,7 @@ router.get('/:aProject', (req, res, next) => {
 })
 
 router.delete('/:aProject', (req, res) => {
-    req.aProject.remove()
+    req.aProject.delete()
     res.sendStatus(202)
 })
 
