@@ -7,13 +7,8 @@ const contributorSchema = new mongoose.Schema({
 })
 
 contributorSchema.pre('remove', function (next) {
-    this.projects.forEach(projectId => {
-        Project.findById(projectId).then(project => {
-            project.contributors = project.contributors.filter(contributor => contributor !== this._id)
-            project.save()
-        })
-        next()
-    })
+    Project.updateMany({_id: {$in: this.projects}}, {$pullAll: {contributors: [this._id]}})
+        .then(next)
 })
 
 contributorSchema.methods.delete = function () {
