@@ -7,7 +7,7 @@ const contributorJoinProjectByIndex = (contributorIndex, projectIndex) => {
         .then(updated => {
             projects[projectIndex] = updated.project
             contributors[contributorIndex] = updated.contributor
-            return Promise.resolve('Success!')
+            return Promise.resolve()
         })
 }
 
