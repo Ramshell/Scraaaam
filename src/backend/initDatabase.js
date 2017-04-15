@@ -1,5 +1,6 @@
 import Contributor from "./models/Contributor"
 import Project from "./models/Project"
+import ProjectService from "./services/project.service"
 
 const initDatabase = () => {
     console.log('Initializing database...')
@@ -18,19 +19,16 @@ const initDatabase = () => {
             Project.create(projects)
                 .then(saved => {
                     projects = saved
-                    projects[0].contributors.push(...contributors)
-                    projects[0].save()
-                        .then(saved => {
-                            projects[0] = saved
-                            Promise.all(contributors.map(contributor => {
-                                contributor.projects.push(projects[0])
-                                return contributor.save()
-                            })).then(saved => {
-                                contributors = saved
-                                console.log(contributors)
-                                console.log(projects)
-                                console.log('Done!')
-                            })
+                    ProjectService.addContributor(projects[0], contributors[0])
+                        .then(updated => {
+                            projects[0] = updated.project
+                            contributors[0] = updated.contributor
+                            ProjectService.addContributor(projects[0], contributors[1])
+                                .then(updated => {
+                                    projects[0] = updated.project
+                                    contributors[1] = updated.contributor
+                                    console.log('Done!')
+                                })
                         })
                 })
         })
