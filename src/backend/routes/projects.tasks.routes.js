@@ -2,6 +2,7 @@ import express from 'express'
 import Task from '../models/Task.js'
 import BaseTask from '../models/BaseTask.js'
 import {paramById} from './utils'
+import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
 
@@ -22,27 +23,16 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   //if the parentTask is undefined means that the task is a direct offspring of the project
-  saveTask(req.aProject, req, next, res, req.body)
+  ProjectService.addSubtask(req.aProject, req.aProject, new Task(req.body))
+      .then(updated => res.status(201).json(updated.task))
+      .catch(next)
 })
 
 router.post('/:parentTask', (req, res, next) => {
-  saveTask(req.parentTask, req, next, res, req.body)
+    ProjectService.addSubtask(req.aProject, req.parentTask, new Task(req.body))
+        .then(updated => res.status(201).json(updated.task))
+        .catch(next)
 })
-
-const saveTask = (parent, req, next, res, task) => {
-  const parentTask = parent
-  let aTask = new Task(task)
-  aTask.project = req.aProject
-  aTask.parent = parentTask
-  aTask.save()
-      .then(savedTask => {
-          aTask = savedTask
-          savedTask.parent.tasks.push(savedTask)
-          savedTask.parent.save()
-      })
-      .then(savedParentTask => res.status(201).json(aTask))
-      .catch(next)
-}
 
 router.get('/:aTask', (req, res, next) => {
   req.aTask.populate('tasks project parent').execPopulate()

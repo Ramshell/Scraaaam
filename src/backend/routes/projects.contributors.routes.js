@@ -1,7 +1,11 @@
 import express from 'express'
 import Contributor from '../models/Contributor.js'
+import {paramById} from './utils'
+import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
+
+paramById(router, Contributor, 'aContributor')
 
 router.get('/', (req, res, next) => {
     Contributor.find({projects: req.aProject._id})
@@ -9,21 +13,9 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.put('/', (req, res, next) => {
-    const project = req.aProject
-    let contributor = {}
-    Contributor.findById(req.body._id)
-        .then(foundContributor => {
-            contributor = foundContributor
-            contributor.projects.push(project)
-            return contributor.save()
-        })
-        .then(savedContributor => {
-            contributor = savedContributor
-            project.contributors.push(contributor)
-            return project.save()
-        })
-        .then(savedProject => res.status(200).json(contributor))
+router.put('/:aContributor', (req, res, next) => {
+    ProjectService.addContributor(req.aProject, req.aContributor)
+        .then(updated => res.status(200).json(updated.contributor))
         .catch(next)
 })
 
