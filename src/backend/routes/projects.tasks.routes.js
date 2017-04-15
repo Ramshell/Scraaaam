@@ -6,8 +6,7 @@ import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
 
-paramById(router, Task, 'aTask')
-paramById(router, BaseTask, 'parentTask')
+paramById(router, BaseTask, 'aTask')
 
 router.get('/', (req, res, next) => {
     Task.find({project: req.aProject._id})
@@ -15,14 +14,14 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/:parentTask', (req, res, next) => {
-    ProjectService.addSubtask(req.aProject, req.parentTask, new Task(req.body))
+router.post('/:aTask', (req, res, next) => {
+    ProjectService.addSubtask(req.aProject, req.aTask, new Task(req.body))
         .then(updated => res.status(201).json(updated.task))
         .catch(next)
 })
 
 router.get('/:aTask', (req, res, next) => {
-    req.aTask.populate('tasks project parent').execPopulate()
+    req.aTask.populate('tasks project parent contributors').execPopulate()
         .then(task => res.json(task))
         .catch(next)
 })
