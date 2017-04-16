@@ -9,9 +9,7 @@ service.addContributor = (aProject, aContributor) => {
             aProject.contributors.push(contributor)
             return aProject.save()
         })
-        .then(savedProject => {
-            return {project: savedProject, contributor: contributor}
-        })
+        .then(savedProject => ({project: savedProject, contributor: contributor}))
 }
 
 service.addSubtask = (aProject, aParentTask, aTask) => {
@@ -24,9 +22,7 @@ service.addSubtask = (aProject, aParentTask, aTask) => {
             aParentTask.tasks.push(task)
             return aParentTask.save()
         })
-        .then(savedParent => {
-            return {parent: savedParent, task: task}
-        })
+        .then(savedParent => ({parent: savedParent, task: task}))
 }
 
 export default service

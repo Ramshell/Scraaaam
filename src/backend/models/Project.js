@@ -18,7 +18,7 @@ projectSchema.pre('remove', function (next) {
 
 projectSchema.pre('save', function (next) {
     if (this.isNew && this.categories.length === 0)
-        this.categories.push(...['Milestone', 'Epic', 'Spike'])
+        this.categories.push(...['Milestone', 'Epic', 'Spike', 'Release', 'Normal'])
     next()
 })
 
