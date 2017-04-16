@@ -5,4 +5,4 @@
   </div>
 </div>
 <taskList [task]="data"></taskList>
-<a class="btn btn-default btn-inverse" [routerLink]="['/projects']">Back</a>
+<a class="btn btn-default btn-inverse" [routerLink]="['/projects', data.project._id, 'tasks', data._id]">Back</a>

@@ -8,10 +8,23 @@ let router = express.Router({mergeParams: true})
 
 paramById(router, BaseTask, 'aTask')
 
+router.get('/all', (req, res, next) => {
+  //returns every task bounded to the project
+  Task.find({project: req.aProject._id})
+      .then(tasks => res.json(tasks))
+      .catch(next)
+})
+
 router.get('/', (req, res, next) => {
-    Task.find({project: req.aProject._id})
-        .then(tasks => res.json(tasks))
-        .catch(next)
+  //returns only the lvl 1 tasks
+  res.json(req.aProject.tasks)
+})
+
+router.post('/', (req, res, next) => {
+  //if the parentTask is undefined means that the task is a direct offspring of the project
+  ProjectService.addSubtask(req.aProject, req.aProject, new Task(req.body))
+      .then(updated => res.status(201).json(updated.task))
+      .catch(next)
 })
 
 router.post('/:aTask', (req, res, next) => {
@@ -27,8 +40,8 @@ router.get('/:aTask', (req, res, next) => {
 })
 
 router.delete('/:aTask', (req, res) => {
-    req.aTask.delete()
-    res.sendStatus(202)
+  req.aTask.remove()
+  res.sendStatus(202)
 })
 
 router.put('/:aTask', (req, res, next) => {

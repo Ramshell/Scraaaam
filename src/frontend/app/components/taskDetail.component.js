@@ -4,12 +4,12 @@ import ProjectDetailTemplate from '../templates/projectDetail.html';
 import ProjectService from "../services/project.service";
 
 @Component({
-  selector: 'projectDetail',
+  selector: 'taskDetail',
   inputs: [ 'data' ],
   template: ProjectDetailTemplate
 })
 
-export default class ProjectDetailComponent {
+export default class TaskDetailComponent {
   constructor(route, projectService){
     this.projectService = projectService
     this.route = route
@@ -18,13 +18,14 @@ export default class ProjectDetailComponent {
   ngOnInit() {
     this.data = {}
     this.route.params.subscribe(params => {
-      this.projectService.getProject(params.id)
+      this.projectService.getTask(params.id, params.taskId)
         .then(data => this.data = data)
         .catch(e => console.log(e))
+
     })
   }
 }
 
-ProjectDetailComponent.parameters = [
+TaskDetailComponent.parameters = [
   ActivatedRoute, ProjectService
 ]
