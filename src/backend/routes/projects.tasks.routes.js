@@ -3,6 +3,7 @@ import Task from '../models/Task.js'
 import BaseTask from '../models/BaseTask.js'
 import {paramById} from './utils'
 import ProjectService from '../services/project.service'
+import tasksCommentsRouter from './projects.tasks.comments.routes.js'
 
 let router = express.Router({mergeParams: true})
 
@@ -50,4 +51,5 @@ router.put('/:aTask', (req, res, next) => {
         .catch(next)
 })
 
+router.use('/:aTask/comments', tasksCommentsRouter)
 export default router
