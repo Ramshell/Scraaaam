@@ -4,7 +4,8 @@ import BaseTask from '../models/BaseTask'
 const taskSchema = new mongoose.Schema({
     category: {type: String, default: 'Sin definir'},
     parent: {type: mongoose.Schema.Types.ObjectId, ref: 'BaseTask'},
-    project: {type: mongoose.Schema.Types.ObjectId, ref: 'Project'}
+    project: {type: mongoose.Schema.Types.ObjectId, ref: 'Project'},
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 taskSchema.pre('remove', function (next) {
