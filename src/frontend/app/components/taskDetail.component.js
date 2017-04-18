@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import ProjectDetailTemplate from '../templates/projectDetail.html';
+import TaskDetailTemplate from '../templates/taskDetail.html';
 import ProjectService from "../services/project.service";
 
 @Component({
   selector: 'taskDetail',
   inputs: [ 'data' ],
-  template: ProjectDetailTemplate
+  template: TaskDetailTemplate
 })
 
 export default class TaskDetailComponent {

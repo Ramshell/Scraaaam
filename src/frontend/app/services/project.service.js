@@ -35,10 +35,18 @@ export default class ProjectService {
   }
 
   create_task(parentTask, task){
+    console.log(parentTask)
     const projId = parentTask.contributors ? parentTask._id : parentTask.project._id
     this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), { headers:{'Content-Type': 'application/json'}})
             .toPromise()
             .then(theTask => parentTask.tasks.push(theTask.json()))
+            .catch(err => console.log(err))
+  }
+
+  create_comment(task, comment){
+    this.http.post(`/projects/${task.project._id}/tasks/${task._id}/comments`, JSON.stringify(comment), { headers:{'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(theComment => task.comments.push(theComment.json()))
             .catch(err => console.log(err))
   }
 

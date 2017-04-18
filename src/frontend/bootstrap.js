@@ -17,6 +17,8 @@ import NewTaskComponent from './app/components/newTask.component'
 import TaskListComponent from './app/components/taskList.component'
 import TaskComponent from './app/components/task.component'
 import TaskDetailComponent from './app/components/taskDetail.component'
+import CommentComponent from './app/components/comment.component'
+import CommentListComponent from './app/components/commentList.component'
 
 let router = RouterModule.forRoot([
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
@@ -30,6 +32,8 @@ let router = RouterModule.forRoot([
   imports: [ router, BrowserModule, FormsModule, HttpModule ],
   styleUrls: ['./style.css', './buttons.css'],
   declarations: [
+    CommentListComponent,
+    CommentComponent,
     TaskDetailComponent,
     TaskComponent,
     TaskListComponent,

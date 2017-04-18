@@ -35,7 +35,7 @@ router.post('/:aTask', (req, res, next) => {
 })
 
 router.get('/:aTask', (req, res, next) => {
-    req.aTask.populate('tasks project parent contributors').execPopulate()
+    req.aTask.populate('tasks project parent contributors comments').execPopulate()
         .then(task => res.json(task))
         .catch(next)
 })

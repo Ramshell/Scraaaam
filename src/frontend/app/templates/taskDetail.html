@@ -1,8 +1,16 @@
-<div class="panel panel-default">
-  <div class="panel-heading">{{data.title}}</div>
-  <div class="panel-body">
-    {{data.description}}
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{data.title}}</div>
+      <div class="panel-body">
+        {{data.description}}
+      </div>
+    </div>
+    <commentList [task]="data"></commentList>
+    <a class="btn btn-default btn-inverse" [routerLink]="['/projects']">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Back</a>
+  </div>
+  <div class="col-md-4">
+    <taskList [task]="data"></taskList>
   </div>
 </div>
-<taskList [task]="data"></taskList>
-<a class="btn btn-default btn-inverse" [routerLink]="['/projects', data.project._id, 'tasks', data._id]">Back</a>

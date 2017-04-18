@@ -19,7 +19,7 @@ app.use('/js', express.static(__dirname + '/../../node_modules/bootstrap-materia
 app.use('/js', express.static(__dirname + '/../../node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/../../node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/../../node_modules/bootstrap-drawer/dist/css')); // redirect CSS bootstrap
-app.use('/css', express.static(__dirname + '/../../node_modules/bootstrap-material-design/dist/css')); // redirect CSS bootstrap
+app.use('/fonts', express.static(__dirname + '/../../node_modules/bootstrap/fonts')); // redirect CSS bootstrap
 app.use('/projects', projectRoutes)
 app.use('/contributors', contributorRoutes)
 
