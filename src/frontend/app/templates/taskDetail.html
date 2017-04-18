@@ -7,8 +7,8 @@
       </div>
     </div>
     <commentList [task]="data"></commentList>
-    <a class="btn btn-default btn-inverse" [routerLink]="['/projects']">
-      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Back</a>
+    <div *ngIf="data.project && data.parent"><a class="btn btn-default btn-inverse" [routerLink]="['/projects', data.project._id, 'tasks', data.parent._id]">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Back</a></div>
   </div>
   <div class="col-md-4">
     <taskList [task]="data"></taskList>
