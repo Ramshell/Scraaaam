@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'; import 'rxjs/add/operator/toPromise'
 import { RouterModule }  from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import AppComponent from './app/components/app.component'
 import ProjectComponent from './app/components/project.component'
@@ -29,7 +30,7 @@ let router = RouterModule.forRoot([
 ], { useHash: true })
 
 @NgModule({
-  imports: [ router, BrowserModule, FormsModule, HttpModule ],
+  imports: [ router, BrowserModule, FormsModule, HttpModule, InfiniteScrollModule ],
   styleUrls: ['./style.css', './buttons.css'],
   declarations: [
     CommentListComponent,

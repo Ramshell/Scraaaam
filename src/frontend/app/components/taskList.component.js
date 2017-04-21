@@ -12,6 +12,10 @@ export default class TaskListComponent {
   constructor(projectService) {
     this.projectService = projectService;
   }
+
+  onScroll(){
+    console.log('last')
+  }
 }
 
 TaskListComponent.parameters = [

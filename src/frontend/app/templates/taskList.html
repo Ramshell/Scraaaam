@@ -1,8 +1,12 @@
-<div *ngIf="task.tasks && task.tasks.length > 0">
-  <h4>Tasks:</h4>
-  <ul class="list-group">
-    <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
-    </task>
-  </ul>
+<div class="infinite-parent">
+  <h4 *ngIf="task.tasks && task.tasks.length > 0">Tasks:</h4>
+  <div>
+  <newTask [task]="task"></newTask>
+  </div>
+  <div class="infinite" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" *ngIf="task.tasks && task.tasks.length > 0">
+    <ul class="list-group">
+      <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
+      </task>
+    </ul>
+  </div>
 </div>
-<newTask [task]="task"></newTask>
