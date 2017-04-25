@@ -57,6 +57,7 @@
     "bootstrap-material-design": "^0.5.10",
     "express": "^4.14.0",
     "mongoose": "^4.9.2",
+    "ng2-dnd": "^4.0.2",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4"
