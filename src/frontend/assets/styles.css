@@ -20,6 +20,10 @@ body {
     padding-top: 100px;
     height: 100%;
   }
+
+  html {
+    overflow: auto;
+  }
 }
 
 .main {
