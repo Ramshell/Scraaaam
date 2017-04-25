@@ -35,8 +35,12 @@
     "json-loader": "^0.5.4",
     "karma-nyan-reporter": "^0.2.5",
     "mocha": "^3.2.0",
+    "mockgoose": "^7.3.1",
     "ngx-infinite-scroll": "^0.4.2",
     "raw-loader": "^0.5.1",
+    "sinon": "^2.1.0",
+    "sinon-chai": "^2.9.0",
+    "supertest": "^3.0.0",
     "webpack": "^2.3.3"
   },
   "dependencies": {
