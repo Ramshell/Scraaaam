@@ -1,8 +1,8 @@
 import express from 'express'
 import Task from '../models/Task.js'
 import BaseTask from '../models/BaseTask.js'
+import Project from '../models/Project'
 import {paramById} from './utils'
-import ProjectService from '../services/project.service'
 import tasksCommentsRouter from './projects.tasks.comments.routes.js'
 
 let router = express.Router({mergeParams: true})
@@ -23,13 +23,13 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   //if the parentTask is undefined means that the task is a direct offspring of the project
-  ProjectService.addSubtask(req.aProject, req.aProject, new Task(req.body))
+  Project.addSubtask(req.aProject, req.aProject, new Task(req.body))
       .then(updated => res.status(201).json(updated.task))
       .catch(next)
 })
 
 router.post('/:aTask', (req, res, next) => {
-    ProjectService.addSubtask(req.aProject, req.aTask, new Task(req.body))
+    Project.addSubtask(req.aProject, req.aTask, new Task(req.body))
         .then(updated => res.status(201).json(updated.task))
         .catch(next)
 })

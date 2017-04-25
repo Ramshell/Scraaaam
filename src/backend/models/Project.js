@@ -26,5 +26,24 @@ projectSchema.methods.delete = function () {
     this.remove()
 }
 
+projectSchema.statics.fullCreate = function (projectData) {
+    const tasks = projectData.tasks
+    projectData.tasks = []
+    return this.create(projectData)
+        .then(saved => this.addSubtasks(saved, saved, tasks))
+}
+
+projectSchema.statics.addContributor = function (aProject, aContributor) {
+    let contributor = aContributor
+    contributor.projects.push(aProject)
+    return contributor.save()
+        .then(savedContributor => {
+            contributor = savedContributor
+            aProject.contributors.push(contributor)
+            return aProject.save()
+        })
+        .then(savedProject => ({project: savedProject, contributor: contributor}))
+}
+
 const Project = BaseTask.discriminator('Project', projectSchema)
 export default Project

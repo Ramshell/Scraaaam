@@ -2,7 +2,6 @@ import express from 'express'
 import Comment from '../models/Comment.js'
 import BaseTask from '../models/BaseTask.js'
 import {paramById} from './utils'
-import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
 

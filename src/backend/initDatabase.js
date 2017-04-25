@@ -1,27 +1,10 @@
 import Contributor from "./models/Contributor"
 import Project from "./models/Project"
-import Task from "./models/Task"
-import ProjectService from "./services/project.service"
 
-const addSubtasks = (project, parent, tasks) =>
-    tasks.reduce((acc, taskData) =>
-            acc.then(updatedParent =>
-                ProjectService.addSubtask(project, updatedParent, new Task(taskData.task))
-                    .then(updated =>
-                        addSubtasks(project, updated.task, taskData.tasks)
-                            .then(_ => Promise.resolve(updated.parent))
-                    )
-            )
-        , Promise.resolve(parent))
-
-const createProject = projectData =>
-    new Project(projectData.project).save()
-        .then(saved => addSubtasks(saved, saved, projectData.tasks))
-
-const createProjects = () => Promise.all(projects.map(projectData => createProject(projectData)))
+const createProjects = () => Promise.all(projects.map(projectData => Project.fullCreate(projectData)))
 
 const contributorJoinProjectByIndex = (contributorIndex, projectIndex) =>
-    ProjectService.addContributor(projects[projectIndex], contributors[contributorIndex])
+    Project.addContributor(projects[projectIndex], contributors[contributorIndex])
         .then(updated => {
             projects[projectIndex] = updated.project
             contributors[contributorIndex] = updated.contributor
@@ -36,7 +19,8 @@ let contributors = [
 
 let projects = [
     {
-        project: {title: "Scraaaam", description: "Scraaaam-ception!"},
+        title: "Scraaaam",
+        description: "Scraaaam-ception!",
         tasks: [
             {
                 task: {category: 'Milestone', title: 'Backend', description: 'Hacer el backend'},
@@ -73,7 +57,8 @@ let projects = [
         ]
     },
     {
-        project: {title: "FixJS", description: "Porque JS tambien necesita fix. Y monadas. Y amor, mucho amor."},
+        title: "FixJS",
+        description: "Porque JS tambien necesita fix. Y monadas. Y amor, mucho amor.",
         tasks: []
     }
 ]
