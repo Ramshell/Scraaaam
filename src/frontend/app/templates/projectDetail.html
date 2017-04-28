@@ -1,14 +1,19 @@
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">{{data.title}}</div>
       <div class="panel-body">
         {{data.description}}
       </div>
     </div>
-    <div *ngIf="data.project && data.parent"><a class="btn btn-default btn-inverse" [routerLink]="['/projects', data.project._id, 'tasks', data.parent._id]">
+    <div><a class="btn btn-default btn-inverse" [routerLink]="['/projects']">
       <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Back</a>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <milestone [data]="milestoneService.currentMilestone"></milestone>
   </div>
   <div class="col-md-3">
     <taskList [task]="data"></taskList>

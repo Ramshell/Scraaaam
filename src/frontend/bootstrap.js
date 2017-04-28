@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'; import 'rxjs/add/operator/toPromise'
 import { RouterModule }  from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MomentModule } from 'angular2-moment';
 
 import AppComponent from './app/components/app.component'
 import ProjectComponent from './app/components/project.component'
@@ -20,6 +21,7 @@ import TaskComponent from './app/components/task.component'
 import TaskDetailComponent from './app/components/taskDetail.component'
 import CommentComponent from './app/components/comment.component'
 import CommentListComponent from './app/components/commentList.component'
+import MilestoneComponent from './app/components/milestone/milestone.component'
 
 let router = RouterModule.forRoot([
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
@@ -30,9 +32,10 @@ let router = RouterModule.forRoot([
 ], { useHash: true })
 
 @NgModule({
-  imports: [ router, BrowserModule, FormsModule, HttpModule, InfiniteScrollModule ],
+  imports: [ router, BrowserModule, FormsModule, HttpModule, InfiniteScrollModule, MomentModule ],
   styleUrls: ['./style.css', './buttons.css'],
   declarations: [
+    MilestoneComponent,
     CommentListComponent,
     CommentComponent,
     TaskDetailComponent,
