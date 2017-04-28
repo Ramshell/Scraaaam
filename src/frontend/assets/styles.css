@@ -3,32 +3,22 @@
 }
 
 html {
-    position: relative;
     min-width: 1024px;
     min-height: 768px;
-    height: 100%;
-    overflow: hidden;
 }
 
 body {
   padding-top: 70px;
   height: 100%;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
   body {
     padding-top: 100px;
     height: 100%;
+    overflow: hidden;
   }
-
-  html {
-    overflow: auto;
-  }
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
 }
 
 textarea {
@@ -58,6 +48,7 @@ textarea {
 }
 
 .infinite {
-  height: 450px;
   overflow-y: auto;
+  height: 70vh;
+  bottom: 0;
 }
