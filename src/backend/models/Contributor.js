@@ -15,5 +15,9 @@ contributorSchema.methods.delete = function () {
     this.remove()
 }
 
+contributorSchema.statics.fullCreate = function (data) {
+    return this.create(data)
+}
+
 const Contributor = mongoose.model('Contributor', contributorSchema)
 export default Contributor

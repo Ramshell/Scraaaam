@@ -19,5 +19,12 @@ taskSchema.methods.delete = function () {
         .then(_ => this.remove())
 }
 
+taskSchema.statics.fullCreate = function (project, data) {
+    const tasks = data.tasks || []
+    data.tasks = []
+    return this.create(data)
+        .then(saved => this.addSubtasks(project, saved, tasks))
+}
+
 const Task = BaseTask.discriminator('Task', taskSchema)
 export default Task

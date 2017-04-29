@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha test/* --reporter nyan --compilers js:babel-core/register",
-    "start": "babel-node -- src/backend/index.js"
+    "start": "babel-node -- src/backend/index.js",
+    "backend": "babel-node -- src/backend/index.js",
+    "frontend": "node node_modules/webpack/bin/webpack.js --progress --watch"
   },
   "repository": {
     "type": "git",

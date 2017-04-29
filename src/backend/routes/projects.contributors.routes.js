@@ -1,7 +1,7 @@
 import express from 'express'
-import Contributor from '../models/Contributor.js'
+import Contributor from '../models/Contributor'
+import Project from '../models/Project'
 import {paramById} from './utils'
-import ProjectService from '../services/project.service'
 
 let router = express.Router({mergeParams: true})
 
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:aContributor', (req, res, next) => {
-    ProjectService.addContributor(req.aProject, req.aContributor)
+    Project.addContributor(req.aProject, req.aContributor)
         .then(updated => res.status(200).json(updated.contributor))
         .catch(next)
 })
