@@ -4,7 +4,7 @@ import ProjectService from '../services/project.service';
 
 @Component({
   selector: 'newTask',
-  inputs: [ 'task' ],
+  inputs: [ 'task', 'taskName' ],
   template: NewTaskTemplate
 })
 export default class NewTaskComponent {

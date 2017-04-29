@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import ProjectDetailTemplate from '../templates/projectDetail.html';
 import ProjectService from "../services/project.service";
+import MilestoneService from "../services/milestone/milestone.service";
 
 @Component({
   selector: 'projectDetail',
   inputs: [ 'data' ],
-  template: ProjectDetailTemplate
+  template: ProjectDetailTemplate,
+  providers: [ MilestoneService ]
 })
 
 export default class ProjectDetailComponent {
-  constructor(route, projectService){
+  constructor(route, projectService, milestoneService){
     this.projectService = projectService
+    this.milestoneService = milestoneService
     this.route = route
   }
 
@@ -26,5 +29,5 @@ export default class ProjectDetailComponent {
 }
 
 ProjectDetailComponent.parameters = [
-  ActivatedRoute, ProjectService
+  ActivatedRoute, ProjectService, MilestoneService
 ]

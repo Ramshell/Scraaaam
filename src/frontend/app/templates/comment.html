@@ -3,6 +3,7 @@
       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{data.content}}</h4>
+    <h4 class="media-heading">{{data.user}}<small><i>Posted on {{data.createdAt | amDateFormat:'LL'}}</i></small></h4>
+      <p>{{data.content}}</p>
   </div>
 </div>
