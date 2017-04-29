@@ -52,3 +52,7 @@ textarea {
   height: 70vh;
   bottom: 0;
 }
+
+#partial {
+  height: 45vh;
+}

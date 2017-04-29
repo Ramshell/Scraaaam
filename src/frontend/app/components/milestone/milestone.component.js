@@ -12,14 +12,6 @@ export default class MilestoneComponent {
   constructor(route){
     this.route = route
   }
-
-  get epics() {
-    return this.data.tasks.filter((x) => x.category == 'Epic')
-  }
-
-  get tasks() {
-    return this.data.tasks.filter((x) => x.category == 'Normal' || x.category == 'Spike')
-  }
 }
 
 MilestoneComponent.parameters = [

@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import TaskDetailTemplate from '../templates/taskDetail.html';
 import ProjectService from "../services/project.service";
+import MilestoneService from "../services/milestone/milestone.service";
 
 @Component({
   selector: 'taskDetail',
   inputs: [ 'data' ],
-  template: TaskDetailTemplate
+  template: TaskDetailTemplate,
+  providers: [ MilestoneService ]
 })
 
 export default class TaskDetailComponent {
-  constructor(route, projectService){
+  constructor(route, projectService, milestoneService){
     this.projectService = projectService
+    this.milestoneService = milestoneService
     this.route = route
   }
 
@@ -27,5 +30,5 @@ export default class TaskDetailComponent {
 }
 
 TaskDetailComponent.parameters = [
-  ActivatedRoute, ProjectService
+  ActivatedRoute, ProjectService, MilestoneService
 ]

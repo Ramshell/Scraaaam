@@ -1,6 +1,6 @@
 <div *ngIf="task.comments && task.comments.length > 0">
   <h4 *ngIf="task.comments.length > 0">Comments:</h4>
-  <ul *ngIf="task.comments.length > 0" class="list-group">
+  <ul *ngIf="task.comments.length > 0" id="partial" class="list-group infinite">
     <comment *ngFor="let item of task.comments" [data]="item">
     </comment>
   </ul>
@@ -12,4 +12,3 @@
     </button>
   </div>
  </form>
-<!-- <newTask [task]="task"></newTask> -->

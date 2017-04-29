@@ -14,7 +14,6 @@ export default class NewTaskComponent {
   }
 
   setNewTask() {
-    console.log("being called")
     this.data = { title: '', description: '', tasks: [], category: 'Milestone' }
   }
 
