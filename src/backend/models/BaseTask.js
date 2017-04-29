@@ -9,10 +9,13 @@ const baseTaskSchema = new mongoose.Schema({
 })
 
 baseTaskSchema.statics.addSubtask = function (aProject, aParentTask, aTask) {
-    let task = aTask
-    task.project = aProject
-    task.parent = aParentTask
-    return task.save()
+    let task
+    return aTask
+        .then(task => {
+            task.project = aProject
+            task.parent = aParentTask
+            return task.save()
+        })
         .then(savedTask => {
             task = savedTask
             aParentTask.tasks.push(task)
@@ -24,12 +27,9 @@ baseTaskSchema.statics.addSubtask = function (aProject, aParentTask, aTask) {
 baseTaskSchema.statics.addSubtasks = function (project, parent, tasks) {
     const Task = require('mongoose').model('Task')
     return tasks.reduce((acc, taskData) =>
-            acc.then(updatedParent =>
-                this.addSubtask(project, updatedParent, new Task(taskData.task))
-                    .then(updated =>
-                        this.addSubtasks(project, updated.task, taskData.tasks)
-                            .then(_ => Promise.resolve(updated.parent))
-                    )
+            acc.then(accParent =>
+                this.addSubtask(project, accParent, Task.fullCreate(project, taskData))
+                    .then(updated => Promise.resolve(updated.parent))
             )
         , Promise.resolve(parent))
 }

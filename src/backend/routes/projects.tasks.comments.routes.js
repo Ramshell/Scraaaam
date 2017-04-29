@@ -8,21 +8,21 @@ let router = express.Router({mergeParams: true})
 paramById(router, BaseTask, 'aTask')
 
 router.get('/', (req, res, next) => {
-  Comment.find({_id: {$in: req.aTask.comments }})
-      .then(comments => res.json(comments))
-      .catch(next)
+    Comment.find({_id: {$in: req.aTask.comments}})
+        .then(comments => res.json(comments))
+        .catch(next)
 })
 
 router.post('/', (req, res, next) => {
-  let aComment = new Comment(req.body)
-  aComment.save()
-      .then(someComment => {
-        aComment = someComment
-        req.aTask.comments.push(someComment)
-        req.aTask.save()
-      })
-      .then(someTask => res.status(201).json(aComment))
-      .catch(next)
+    let aComment
+    Comment.fullCreate(req.body)
+        .then(someComment => {
+            aComment = someComment
+            req.aTask.comments.push(someComment)
+            req.aTask.save()
+        })
+        .then(someTask => res.status(201).json(aComment))
+        .catch(next)
 })
 
 export default router

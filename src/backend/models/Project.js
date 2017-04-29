@@ -26,10 +26,10 @@ projectSchema.methods.delete = function () {
     this.remove()
 }
 
-projectSchema.statics.fullCreate = function (projectData) {
-    const tasks = projectData.tasks
-    projectData.tasks = []
-    return this.create(projectData)
+projectSchema.statics.fullCreate = function (data) {
+    const tasks = data.tasks || []
+    data.tasks = []
+    return this.create(data)
         .then(saved => this.addSubtasks(saved, saved, tasks))
 }
 

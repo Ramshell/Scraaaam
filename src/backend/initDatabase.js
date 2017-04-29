@@ -1,7 +1,7 @@
 import Contributor from "./models/Contributor"
 import Project from "./models/Project"
 
-const createProjects = () => Promise.all(projects.map(projectData => Project.fullCreate(projectData)))
+const create = (model, objs) => Promise.all(objs.map(data => model.fullCreate(data)))
 
 const contributorJoinProjectByIndex = (contributorIndex, projectIndex) =>
     Project.addContributor(projects[projectIndex], contributors[contributorIndex])
@@ -23,54 +23,49 @@ let projects = [
         description: "Scraaaam-ception!",
         tasks: [
             {
-                task: {category: 'Milestone', title: 'Backend', description: 'Hacer el backend'},
+                category: 'Milestone', title: 'Backend', description: 'Hacer el backend',
                 tasks: [
                     {
-                        task: {
-                            category: 'Epic',
-                            title: 'Tasks recursivas',
-                            description: 'Funcion para la creacion de subtareas recursivamente'
-                        },
-                        tasks: [{
-                            task: {category: 'Normal', title: 'Test', description: 'Funciona!'},
-                            tasks: []
-                        }]
+                        category: 'Epic',
+                        title: 'Tasks recursivas',
+                        description: 'Funcion para la creacion de subtareas recursivamente',
+                        tasks: [
+                            {
+                                category: 'Normal',
+                                title: 'Test',
+                                description: 'Funciona!',
+                            }
+                        ]
                     }
                 ]
             },
             {
-                task: {category: 'Milestone', title: 'Frontend', description: 'Hacer el frontend'},
-                tasks: []
+                category: 'Milestone', title: 'Frontend', description: 'Hacer el frontend',
             },
             {
-                task: {category: 'Epic', title: 'Model', description: 'Pensar el modelo'},
-                tasks: []
+                category: 'Epic', title: 'Model', description: 'Pensar el modelo',
             },
             {
-                task: {
-                    category: 'Spike',
-                    title: 'Angular 2',
-                    description: 'Investigar como no querer pegarse un tiro con Angular 2'
-                },
-                tasks: []
+                category: 'Spike',
+                title: 'Angular 2',
+                description: 'Investigar como no querer pegarse un tiro con Angular 2',
             }
         ]
     },
     {
         title: "FixJS",
         description: "Porque JS tambien necesita fix. Y monadas. Y amor, mucho amor.",
-        tasks: []
     }
 ]
 
 const initDatabase = () => {
     console.log('Initializing database...')
     Promise.all([
-        Contributor.create(contributors),
-        createProjects()
-    ]).then(created => {
-        contributors = created[0]
-        projects = created[1]
+        create(Contributor, contributors),
+        create(Project, projects)
+    ]).then(([savedContributors, savedProjects]) => {
+        contributors = savedContributors
+        projects = savedProjects
     }).then(_ => contributorJoinProjectByIndex(0, 0))
         .then(_ => contributorJoinProjectByIndex(1, 0))
         .then(_ => contributorJoinProjectByIndex(0, 1))
