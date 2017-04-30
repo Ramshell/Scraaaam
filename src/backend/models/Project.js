@@ -5,7 +5,7 @@ import Contributor from '../models/Contributor'
 
 const projectSchema = new mongoose.Schema({
     category: {type: String, default: 'Proyecto'},
-    categories: [String],
+    categories: [[String]],
     contributors: [{type: mongoose.Schema.Types.ObjectId, ref: 'Contributor'}]
 })
 
@@ -18,13 +18,17 @@ projectSchema.pre('remove', function (next) {
 
 projectSchema.pre('save', function (next) {
     if (this.isNew && this.categories.length === 0)
-        this.categories.push(...['Milestone', 'Epic', 'Spike', 'Release', 'Normal'])
+        this.categories.push(...[['Release'], ['Milestone', 'Spike'], ['Epic'], ['Normal']])
     next()
 })
 
 projectSchema.methods.delete = function () {
     this.remove()
 }
+
+projectSchema.virtual('allowedCategories').get(function () {
+    return [].concat.apply([], this.categories)
+})
 
 projectSchema.statics.fullCreate = function (data) {
     const tasks = data.tasks || []

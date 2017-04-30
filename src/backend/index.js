@@ -2,13 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import projectRoutes from "./routes/projects.routes.js";
 import contributorRoutes from "./routes/contributors.routes.js";
-import initDatabase from "./initDatabase"
 
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/projects')
-    .then(mongoose.connection.dropDatabase())
-    .then(initDatabase)
 
 const app = express()
 app.use(bodyParser.json())

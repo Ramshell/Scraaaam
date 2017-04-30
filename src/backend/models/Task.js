@@ -19,6 +19,12 @@ taskSchema.methods.delete = function () {
         .then(_ => this.remove())
 }
 
+taskSchema.virtual('allowedCategories').get(function () {
+    const drop = this.project.categories.findIndex((list) => list.includes(this.category))
+    const allowed = this.project.categories.slice(drop)
+    return [].concat.apply([], allowed)
+})
+
 taskSchema.statics.fullCreate = function (project, data) {
     const tasks = data.tasks || []
     data.tasks = []

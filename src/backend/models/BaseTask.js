@@ -8,6 +8,13 @@ const baseTaskSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
 })
 
+baseTaskSchema.virtual('categoryDetail').get(function () {
+    return this.tasks.reduce((acc, task) => {
+        acc[task.category] = ++acc[task.category] || 1
+        return acc
+    }, {})
+})
+
 baseTaskSchema.statics.addSubtask = function (aProject, aParentTask, aTask) {
     let task
     return aTask
