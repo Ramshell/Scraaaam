@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading">{{data.title}}
+      <div class="panel-heading">{{data.category}}: {{data.title}}
         <small *ngIf="data.epics && data.tasks">
-          <i>{{data.epics.length}} ecpis, {{data.tasks.length}} tasks
+          <i>{{data.epics.length}} epics, {{data.tasks.length}} tasks
           </i>
         </small>
       </div>

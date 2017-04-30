@@ -2,7 +2,7 @@ import express from 'express'
 import Project from '../models/Project.js'
 import projectTasksRouter from './projects.tasks.routes.js'
 import projectContributorsRouter from './projects.contributors.routes.js'
-import {paramById} from './utils'
+import {paramById, extendTask} from './utils'
 
 let router = express.Router()
 
@@ -22,7 +22,7 @@ router.post('/', (req, res, next) =>
 
 router.get('/:aProject', (req, res, next) =>
     req.aProject.populate('tasks contributors').execPopulate()
-        .then(project => res.json(project))
+        .then(project => res.json(extendTask(project)))
         .catch(next)
 )
 

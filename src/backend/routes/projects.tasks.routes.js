@@ -1,8 +1,7 @@
 import express from 'express'
 import Task from '../models/Task.js'
 import BaseTask from '../models/BaseTask.js'
-import Project from '../models/Project'
-import {paramById} from './utils'
+import {paramById, extendTask} from './utils'
 import tasksCommentsRouter from './projects.tasks.comments.routes.js'
 
 let router = express.Router({mergeParams: true})
@@ -34,10 +33,7 @@ router.post('/:aTask', (req, res, next) =>
 router.get('/:aTask', (req, res, next) =>
     req.aTask.populate('tasks project parent contributors comments').execPopulate()
         .then(task => {
-            const extended = task.toObject()
-            extended.allowedCategories = task.allowedCategories
-            extended.categoryDetail = task.categoryDetail
-            res.json(extended)
+            res.json(extendTask(task))
         })
         .catch(next)
 )
