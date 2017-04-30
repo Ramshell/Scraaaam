@@ -26,9 +26,9 @@ projectSchema.methods.delete = function () {
     this.remove()
 }
 
-projectSchema.methods.buildAllowedCategories = function () {
+projectSchema.virtual('allowedCategories').get(function () {
     return [].concat.apply([], this.categories)
-}
+})
 
 projectSchema.statics.fullCreate = function (data) {
     const tasks = data.tasks || []

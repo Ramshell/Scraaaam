@@ -35,7 +35,8 @@ router.get('/:aTask', (req, res, next) =>
     req.aTask.populate('tasks project parent contributors comments').execPopulate()
         .then(task => {
             const extended = task.toObject()
-            extended.allowedCategories = task.buildAllowedCategories()
+            extended.allowedCategories = task.allowedCategories
+            extended.categoryDetail = task.categoryDetail
             res.json(extended)
         })
         .catch(next)
