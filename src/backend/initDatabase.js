@@ -60,7 +60,7 @@ let projects = [
 
 const initDatabase = () => {
     console.log('Initializing database...')
-    Promise.all([
+    return Promise.all([
         create(Contributor, contributors),
         create(Project, projects)
     ]).then(([savedContributors, savedProjects]) => {
@@ -72,4 +72,13 @@ const initDatabase = () => {
         .then(_ => console.log('Done!'))
 }
 
-export default initDatabase
+function main() {
+    const mongoose = require('mongoose')
+
+    mongoose.connect('mongodb://localhost/projects')
+        .then(mongoose.connection.dropDatabase())
+        .then(_ => initDatabase())
+        .then(_ => process.exit())
+}
+
+main()
