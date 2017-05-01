@@ -1,7 +1,7 @@
 <div class="infinite-parent">
   <h4 *ngIf="task.tasks && task.tasks.length > 0">Tasks:</h4>
   <div>
-  <newTask [task]="task", [taskName]="Epic"></newTask>
+  <!--<newTask [task]="task", [taskName]="Epic"></newTask>-->
   </div>
   <div class="infinite" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" *ngIf="task.tasks && task.tasks.length > 0">
     <ul class="list-group">
