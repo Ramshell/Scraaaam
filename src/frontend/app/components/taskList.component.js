@@ -1,29 +1,33 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import TaskListTemplate from '../templates/taskList.html';
 import ProjectService from '../services/project.service';
-import MilestoneService from '../services/milestone/milestone.service';
+import ActiveViewService from '../services/activeView.service'
 
 
 @Component({
-  selector: 'taskList',
-  inputs: ['task', 'taskName', 'partial' ],
-  template: TaskListTemplate
+    selector: 'taskList',
+    inputs: ['task', 'taskName', 'partial'],
+    template: TaskListTemplate
 })
 export default class TaskListComponent {
-  constructor(projectService, milestoneService) {
-    this.projectService = projectService;
-    this.milestoneService = milestoneService;
-  }
+    constructor(projectService, activeViewService) {
+        this.projectService = projectService;
+        this.activeViewService = activeViewService;
+    }
 
-  onScroll(){
-    console.log('last')
-  }
+    onScroll() {
+        console.log('last')
+    }
 
-  change_task(item){
-    this.milestoneService.getMilestone(item.project._id || item.project, item._id)
-  }
+    change_task(item) {
+        this.projectService.getTask(this.activeViewService.activeProject._id, item._id)
+            .then(task => {
+                this.task = task
+                this.activeViewService.switchInto(task)
+            })
+    }
 }
 
 TaskListComponent.parameters = [
-  ProjectService, MilestoneService
+    ProjectService, ActiveViewService
 ]

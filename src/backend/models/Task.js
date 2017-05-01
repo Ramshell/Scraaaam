@@ -19,6 +19,13 @@ taskSchema.methods.delete = function () {
         .then(_ => this.remove())
 }
 
+taskSchema.methods.buildHistory = function (promiseOfList) {
+    return promiseOfList.then(list => {
+        list.push(this)
+        return BaseTask.findById(this.parent).then(parent => parent.buildHistory(Promise.resolve(list)))
+    })
+}
+
 taskSchema.virtual('allowedCategories').get(function () {
     const drop = this.project.categories.findIndex((list) => list.includes(this.category))
     const allowed = this.project.categories.slice(drop)

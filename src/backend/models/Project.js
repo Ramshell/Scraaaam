@@ -26,6 +26,13 @@ projectSchema.methods.delete = function () {
     this.remove()
 }
 
+projectSchema.methods.buildHistory = function (promiseOfList) {
+    return promiseOfList.then(list => {
+        list.push(this)
+        return list
+    })
+}
+
 projectSchema.virtual('allowedCategories').get(function () {
     return [].concat.apply([], this.categories)
 })

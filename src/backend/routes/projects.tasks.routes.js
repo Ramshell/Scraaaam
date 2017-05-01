@@ -38,6 +38,17 @@ router.get('/:aTask', (req, res, next) =>
         .catch(next)
 )
 
+router.get('/:aTask/history', (req, res, next) => {
+        req.aTask.history
+            .then(list =>
+                Promise.all(list.map(task => task.populate('tasks project parent contributors comments').execPopulate()))
+                    .then(tasks => res.json(tasks.map(task => extendTask(task))))
+                    .catch(next)
+            )
+            .catch(next)
+    }
+)
+
 router.delete('/:aTask', (req, res) => {
     req.aTask.remove()
     res.sendStatus(202)

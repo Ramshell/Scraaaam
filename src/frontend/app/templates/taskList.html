@@ -1,7 +1,7 @@
 <div>
   <h4 *ngIf="task.tasks && task.tasks.length > 0">{{taskName + 's'}}:</h4>
   <div>
-  <newTask [task]="task" [taskName]="taskName"></newTask>
+  <!--<newTask [task]="task"></newTask>-->
   </div>
   <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" *ngIf="task.tasks && task.tasks.length > 0">
     <ul *ngIf="!partial" id="partial" class="list-group infinite">
