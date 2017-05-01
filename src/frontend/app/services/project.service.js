@@ -8,27 +8,31 @@ export default class ProjectService {
         this.http = http
         this._filter = ''
         this._allProjects = []
+        this.projects = []
         this.http.get("/projects").toPromise()
-            .then(response => this._allProjects.push(...response.json()))
+            .then(response => {
+                this._allProjects.push(...response.json())
+                this.updateProjects()
+            })
             .catch(err => console.log(err))
-        this.currentProject = {title: 'Projects'}
     }
 
-    get projects() {
-        return this._allProjects.filter((x) => x.title.includes(this._filter))
+    get filter() {
+        return this._filter
     }
 
-    filterProjects(filter) {
-        this._filter = filter
-        this.projects
+    set filter(value) {
+        this._filter = value
+        this.updateProjects()
+    }
+
+    updateProjects() {
+        this.projects = this._allProjects.filter(project => project.title.includes(this.filter))
     }
 
     getProject(id) {
         return this.http.get(`/projects/${id}`).toPromise()
-            .then(response => {
-                this.currentProject = response.json();
-                return response.json();
-            })
+            .then(response => response.json())
     }
 
     create(project) {
@@ -36,7 +40,7 @@ export default class ProjectService {
             .toPromise()
             .then(theProject => {
                 this._allProjects.push(theProject.json());
-                this.projects
+                this.updateProjects()
             })
             .catch(err => console.log(err))
     }
