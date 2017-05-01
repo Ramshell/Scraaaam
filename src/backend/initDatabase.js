@@ -33,28 +33,28 @@ let projects = [
                             {
                                 category: 'Normal',
                                 title: 'Test',
-                                description: 'Funciona!',
+                                description: 'Funciona!'
                             }
                         ]
                     }
                 ]
             },
             {
-                category: 'Milestone', title: 'Frontend', description: 'Hacer el frontend',
+                category: 'Milestone', title: 'Frontend', description: 'Hacer el frontend'
             },
             {
-                category: 'Epic', title: 'Model', description: 'Pensar el modelo',
+                category: 'Epic', title: 'Model', description: 'Pensar el modelo'
             },
             {
                 category: 'Spike',
                 title: 'Angular 2',
-                description: 'Investigar como no querer pegarse un tiro con Angular 2',
+                description: 'Investigar como no querer pegarse un tiro con Angular 2'
             }
         ]
     },
     {
         title: "FixJS",
-        description: "Porque JS tambien necesita fix. Y monadas. Y amor, mucho amor.",
+        description: "Porque JS tambien necesita fix. Y monadas. Y amor, mucho amor."
     }
 ]
 

@@ -6,7 +6,7 @@ import ActiveViewService from '../services/activeView.service'
 
 @Component({
     selector: 'taskList',
-    inputs: ['task', 'taskName', 'partial'],
+    inputs: ['task'],
     template: TaskListTemplate
 })
 export default class TaskListComponent {

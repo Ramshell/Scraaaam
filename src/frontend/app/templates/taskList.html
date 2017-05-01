@@ -1,16 +1,19 @@
 <div>
-  <h4 *ngIf="task.tasks && task.tasks.length > 0">{{taskName + 's'}}:</h4>
-  <div>
-  <!--<newTask [task]="task"></newTask>-->
-  </div>
-  <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" *ngIf="task.tasks && task.tasks.length > 0">
-    <ul *ngIf="!partial" id="partial" class="list-group infinite">
-      <task *ngFor="let item of task.tasks" [data]="item" [routerLink]="['/projects', (item.project._id || item.project), 'tasks', item._id]">
-      </task>
-    </ul>
-    <ul *ngIf="partial" class="list-group infinite">
-      <task *ngFor="let item of task.tasks" [data]="item" (click)="change_task(item)">
-      </task>
-    </ul>
-  </div>
+    <h4>Tasks:</h4>
+    <!--<div>-->
+    <!--<newTask [task]="task"></newTask>-->
+    <!--</div>-->
+    <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300">
+        <ul class="list-group infinite">
+            <div *ngIf="task.tasks && task.tasks.length < 1" class="panel panel-default">
+                <div class="panel-heading">Oops!</div>
+                <div class="panel-body">
+                    <p>Nothing to see here, wanna add something?</p>
+                    <!--<newTask [task]="task"></newTask>-->
+                </div>
+            </div>
+            <task *ngFor="let item of task.tasks" [data]="item" (click)="change_task(item)">
+            </task>
+        </ul>
+    </div>
 </div>
