@@ -8,6 +8,10 @@ const baseTaskSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
 })
 
+baseTaskSchema.virtual('history').get(function () {
+    return this.buildHistory(Promise.resolve([]))
+})
+
 baseTaskSchema.virtual('categoryDetail').get(function () {
     return this.tasks.reduce((acc, task) => {
         acc[task.category] = ++acc[task.category] || 1

@@ -1,39 +1,39 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Scraaaam</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{projectService.currentProject.title}} <span class="caret"></span></a>
-           <ul class="dropdown-menu inverse-dropdown">
-             <li *ngFor="let project of projectService.projects"><a [routerLink]="['/projects', project._id]">{{project.title}}</a></li>
-             <li role="separator" class="divider"></li>
-             <li><a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#newProject">
-               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>New Project</a>
-             </li>
-           </ul>
-         </li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input class="form-control" [(ngModel)]="data.projectTitle" name="content" type="text" class="form-control" placeholder="Projects">
-        <button class="form-control" type="submit" class="btn btn-default btn-inverse" (click)="searchProjects()">Search</button>
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Scraaaam</a>
         </div>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Projects <span class="caret"></span></a>
+                    <ul class="dropdown-menu inverse-dropdown">
+                        <li *ngFor="let project of projectService.projects"><a
+                                [routerLink]="['/projects', project._id]">{{project.title}}</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#newProject">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Project</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-form navbar-left">
+                <input [(ngModel)]="projectService.filter" type="text" placeholder="Projects">
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 <div class="container-fluid">
-  <newProject></newProject>
-<router-outlet></router-outlet>
+    <newProject></newProject>
+    <router-outlet></router-outlet>
 </div>

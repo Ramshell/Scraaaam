@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import TaskTemplate from '../templates/project.html';
+import TaskTemplate from '../templates/task.html';
 
 @Component({
   selector: 'task',

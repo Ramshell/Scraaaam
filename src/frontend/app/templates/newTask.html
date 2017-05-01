@@ -1,28 +1,33 @@
-<a type="button" class="btn btn-default btn-inverse" data-toggle="modal" [href]="'#' + taskName">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>New {{taskName}}</a>
+<a type="button" class="btn btn-default btn-inverse" data-toggle="modal" [href]="'#newTaskModal'">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New task</a>
 <div>
-  <div [id]="taskName" class="modal fade newTask" tabindex="-1" role="dialog" [attr.aria-labelledby]="taskName">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">New {{taskName}}</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-group">
-            <div class="input-group">
-              <input type="text" class="form-control" [(ngModel)]="data.title" placeholder="Tiitle" name="title">
-              <textarea class="form-control" [(ngModel)]="data.description" placeholder="Description" name="description"></textarea>
-              <select class="form-control" [(ngModel)]="data.category" name="category">
-                <option *ngFor="let category of (task.project ? task.project.categories : task.categories)">
-                  {{category}}
-                </option>
-              </select>
-              <button type="button" class="form-control btn btn-default btn-inverse" (click)="create_task()">Done!</button>
+    <div [id]="'newTaskModal'" class="modal fade newTask" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New task</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="data.title" placeholder="Title"
+                                   name="title">
+                            <textarea class="form-control" [(ngModel)]="data.description" placeholder="Description"
+                                      name="description"></textarea>
+                            <select class="form-control" [(ngModel)]="data.category" name="category">
+                                <option *ngFor="let category of task.allowedCategories">
+                                    {{category}}
+                                </option>
+                            </select>
+                            <button type="button" class="form-control btn btn-default btn-inverse"
+                                    (click)="create_task()">Done!
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-           </form>
         </div>
-      </div>
     </div>
-  </div>
 </div>

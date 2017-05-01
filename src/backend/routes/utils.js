@@ -11,3 +11,10 @@ export const paramById = (router, clazz, property) => {
             .catch(next)
     })
 }
+
+export const extendTask = (task) => {
+    const extended = task.toObject()
+    extended.allowedCategories = task.allowedCategories
+    extended.categoryDetail = task.categoryDetail
+    return extended
+}
