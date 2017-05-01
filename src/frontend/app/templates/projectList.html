@@ -1,6 +1,8 @@
 <a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#newProject">
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Project</a>
-<ul class="list-group">
-    <project *ngFor="let item of projectService.projects" [data]="item"
-             [routerLink]="['/projects', item._id]"></project>
-</ul>
+<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300">
+    <ul class="list-group infinite">
+        <project *ngFor="let item of projectService.projects" [data]="item"
+                 [routerLink]="['/projects', item._id]"></project>
+    </ul>
+</div>
