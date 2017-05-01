@@ -21,7 +21,7 @@ export default class ActiveViewService {
     }
 
     switchBack(taskIndex) {
-        this.taskHistory = this.taskHistory.splice(0, taskIndex)
+        this.taskHistory.splice(0, taskIndex)
         this.activeTask = this.taskHistory[0]
     }
 }
