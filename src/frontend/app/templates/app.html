@@ -19,7 +19,7 @@
              <li *ngFor="let project of projectService.projects"><a [routerLink]="['/projects', project._id]">{{project.title}}</a></li>
              <li role="separator" class="divider"></li>
              <li><a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#newProject">
-               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>New Project</a>
+               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Project</a>
              </li>
            </ul>
          </li>

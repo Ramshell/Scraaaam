@@ -1,5 +1,6 @@
+<a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#newProject">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Project</a>
 <ul class="list-group">
     <project *ngFor="let item of projectService.projects" [data]="item"
              [routerLink]="['/projects', item._id]"></project>
 </ul>
-<newProject></newProject>
