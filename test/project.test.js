@@ -21,6 +21,10 @@ after(() => {
   mockgoose.helper.reset()
 })
 
+// after((done) => {
+//   mockgoose.helper.unmock(done)
+// })
+
 describe("Project with 1 task and 0 contributors", () => {
   const project = Project.fullCreate({
     title: "Scraaaam",
@@ -42,10 +46,10 @@ describe("Project with 1 task and 0 contributors", () => {
   })
   describe("When add a contributor", () => {
     it("should save the contributor", async () => {
+			const contribut = await Contributor.fullCreate({name: "Linus Torvalds"})
       const proj = await project
-      const savedProject = await Project.addContributor(proj, {name: "Linus Torvalds"})
-      const contribut = await Contributor.findById(savedProject.contributor._id)
-      expect(contribut).to.have.property("name", "Linus Torvalds")
+      const savedProject = await Project.addContributor(proj, contribut)
+      expect(savedProject).to.have.property("contributor").to.have.property("name", "Linus Torvalds")
     })
   })
 })

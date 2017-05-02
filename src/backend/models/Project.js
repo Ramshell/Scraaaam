@@ -46,9 +46,8 @@ projectSchema.statics.fullCreate = function (data) {
 
 projectSchema.statics.addContributor = function (aProject, aContributor) {
     let contributor = aContributor
-    contributor.projects = contributor.projects || []
     contributor.projects.push(aProject)
-    return Contributor.create(contributor)
+    return contributor.save()
         .then(savedContributor => {
             contributor = savedContributor
             aProject.contributors.push(contributor)
