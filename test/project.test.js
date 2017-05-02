@@ -5,8 +5,6 @@ import Task from '../src/backend/models/Task'
 const mongoose = require('mongoose')
 var Mockgoose = require('mockgoose').Mockgoose;
 let mockgoose = new Mockgoose(mongoose);
-
-chai.use(require('chai-as-promised'))
 const expect = chai.expect
 
 before((done) => {

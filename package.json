@@ -41,7 +41,6 @@
     "karma": "^1.6.0",
     "karma-nyan-reporter": "^0.2.5",
     "mocha": "^3.2.0",
-    "mocha-as-promised": "^2.0.0",
     "mockgoose": "^7.3.1",
     "nyc": "^10.3.0",
     "raw-loader": "^0.5.1",
