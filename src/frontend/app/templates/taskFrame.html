@@ -8,10 +8,12 @@
                     </div>
                     <div class="col-sm-3 pull-right">
                         <div class="btn-group">
-                            <div><a class="btn btn-default"
-                                    [routerLink]="['/projects', activeProject._id, 'tasks', data._id]">
-                                <span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
-                            </div>
+                            <button type="button" class="btn btn-default"
+                                    [routerLink]="['/projects', activeViewService.activeProject._id, 'tasks', data._id]">
+                                <span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default"
+                                    (click)="deleteContents()">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         </div>
                     </div>
                 </div>

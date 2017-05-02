@@ -23,7 +23,7 @@ projectSchema.pre('save', function (next) {
 })
 
 projectSchema.methods.delete = function () {
-    this.remove()
+    return this.remove().then(removed => Project.find())
 }
 
 projectSchema.methods.buildHistory = function (promiseOfList) {
