@@ -46,14 +46,16 @@ projectSchema.statics.fullCreate = function (data) {
 
 projectSchema.statics.addContributor = function (aProject, aContributor) {
     let contributor = aContributor
+    contributor.projects = contributor.projects || []
     contributor.projects.push(aProject)
-    return contributor.save()
+    return Contributor.create(contributor)
         .then(savedContributor => {
             contributor = savedContributor
             aProject.contributors.push(contributor)
             return aProject.save()
         })
         .then(savedProject => ({project: savedProject, contributor: contributor}))
+        .catch((err) => console.log(err))
 }
 
 const Project = BaseTask.discriminator('Project', projectSchema)
