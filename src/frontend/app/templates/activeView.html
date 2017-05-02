@@ -3,7 +3,7 @@
         <ul class="list-group">
             <taskFrame *ngFor="let task of activeViewService.taskHistory; let i = index"
                        [data]="task"
-                       [activeProject]="activeViewService.activeProject"
+                       [index]="i"
                        (click)="activeViewService.switchBack(i)"
             ></taskFrame>
         </ul>

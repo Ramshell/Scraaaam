@@ -70,6 +70,20 @@ export default class ProjectService {
         return this.http.get(`/projects/${id}/tasks/${taskId}/history`).toPromise()
             .then(response => response.json())
     }
+
+    deleteTask(id, taskId) {
+        return this.http.delete(`/projects/${id}/tasks/${taskId}`).toPromise()
+            .then(parent => parent.json())
+    }
+
+    deleteProject(id) {
+        return this.http.delete(`/projects/${id}`).toPromise()
+            .then(projects => {
+                this._allProjects = projects.json()
+                this.updateProjects()
+                return Promise.resolve(projects)
+            })
+    }
 }
 
 ProjectService.parameters = [

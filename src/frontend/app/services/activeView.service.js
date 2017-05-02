@@ -15,6 +15,11 @@ export default class ActiveViewService {
         this.activeTask = this.taskHistory[0]
     }
 
+    updateActiveTask(updatedTask) {
+        this.activeTask = updatedTask
+        this.taskHistory[0] = this.activeTask
+    }
+
     switchInto(newActiveTask) {
         this.activeTask = newActiveTask
         this.taskHistory.unshift(this.activeTask)

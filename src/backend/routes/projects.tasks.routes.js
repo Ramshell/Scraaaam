@@ -31,9 +31,9 @@ router.post('/:aTask', (req, res, next) =>
 )
 
 router.get('/:aTask', (req, res, next) =>
-    req.aTask.populate('tasks project parent contributors comments').execPopulate()
+    extendTask(req.aTask)
         .then(task => {
-            res.json(extendTask(task))
+            res.json(task)
         })
         .catch(next)
 )
@@ -41,18 +41,19 @@ router.get('/:aTask', (req, res, next) =>
 router.get('/:aTask/history', (req, res, next) => {
         req.aTask.history
             .then(list =>
-                Promise.all(list.map(task => task.populate('tasks project parent contributors comments').execPopulate()))
-                    .then(tasks => res.json(tasks.map(task => extendTask(task))))
+                Promise.all(list.map(task => extendTask(task)))
+                    .then(tasks => res.json(tasks))
                     .catch(next)
             )
             .catch(next)
     }
 )
 
-router.delete('/:aTask', (req, res) => {
-    req.aTask.remove()
-    res.sendStatus(202)
-})
+router.delete('/:aTask', (req, res, next) =>
+    req.aTask.delete()
+        .then(parent => extendTask(parent).then(extended => res.json(extended)))
+        .catch(next)
+)
 
 router.put('/:aTask', (req, res, next) => {
     BaseTask.findByIdAndUpdate(req.aTask._id, req.body)

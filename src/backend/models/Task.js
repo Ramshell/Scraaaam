@@ -15,8 +15,11 @@ taskSchema.pre('remove', function (next) {
 })
 
 taskSchema.methods.delete = function () {
-    BaseTask.findByIdAndUpdate(this.parent, {$pullAll: {tasks: [this._id]}})
-        .then(_ => this.remove())
+    return BaseTask.findByIdAndUpdate(this.parent, {$pullAll: {tasks: [this._id]}}, {new: true})
+        .then(parent => {
+            this.remove()
+            return Promise.resolve(parent)
+        })
 }
 
 taskSchema.methods.buildHistory = function (promiseOfList) {

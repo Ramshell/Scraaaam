@@ -26,10 +26,11 @@ router.get('/:aProject', (req, res, next) =>
         .catch(next)
 )
 
-router.delete('/:aProject', (req, res) => {
+router.delete('/:aProject', (req, res, next) =>
     req.aProject.delete()
-    res.sendStatus(202)
-})
+        .then(projects => res.json(projects))
+        .catch(next)
+)
 
 router.put('/:aProject', (req, res, next) =>
     Project.findByIdAndUpdate(req.aProject._id, req.body)
