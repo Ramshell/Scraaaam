@@ -50,9 +50,9 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
-    "@angular/common": "^2.4.0",
+    "@angular/common": "^2.4.10",
     "@angular/compiler": "^2.4.0",
-    "@angular/core": "^2.4.0",
+    "@angular/core": "^2.4.10",
     "@angular/forms": "^2.4.0",
     "@angular/http": "^2.4.10",
     "@angular/platform-browser": "^2.4.0",
@@ -65,6 +65,7 @@
     "express": "^4.14.0",
     "mongoose": "^4.9.2",
     "ng2-dnd": "^4.0.2",
+    "ngx-infinite-scroll": "^0.5.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4"
