@@ -2,33 +2,55 @@ import chai from "chai"
 import Project from '../src/backend/models/Project'
 import Contributor from '../src/backend/models/Contributor'
 import Task from '../src/backend/models/Task'
-const mongoose = require('mongoose')
-var Mockgoose = require('mockgoose').Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
+import mongoose from "mongoose"
+import mockgoose from "mockgoose"
 const expect = chai.expect
 
-before((done) => {
-	mockgoose.prepareStorage().then(function() {
-		mongoose.connect('mongodb://localhost/projects', function(err) {
-			done(err);
-		});
-	});
-});
-
-after(() => {
-  mockgoose.helper.reset()
-})
-
+// before((done) => {
+// 	mockgoose.prepareStorage().then(function() {
+// 		mongoose.connect('mongodb://localhost/projects', function(err) {
+// 			done(err);
+// 		});
+// 	});
+// });
+//
+// after(() => {
+//   mockgoose.helper.reset()
+// })
+//
 // after((done) => {
-//   mockgoose.helper.unmock(done)
+// 	if ( mockgoose.helper.isMocked() === true ) {
+// 		console.log("asd")
+// 		done()
+// 	}
 // })
 
 describe("Project with 1 task and 0 contributors", () => {
-  const project = Project.fullCreate({
-    title: "Scraaaam",
-    description: "This is cool bro",
-    tasks: [{title: "Scram task", description: "description task"}]
-  })
+
+
+	before("Mock mongoose", async() => {
+		await mockgoose(mongoose)
+		mongoose.connect('mongodb://localhost/projects')
+	})
+
+	after("Restore mongoose", done => {
+  	mongoose.unmock(done);
+	})
+
+	afterEach("Reset mock mongo database", done => {
+	  mockgoose.reset(done);
+	})
+
+	let project
+
+	beforeEach("create project", async()=> {
+		project = Project.fullCreate({
+	    title: "Scraaaam",
+	    description: "This is cool bro",
+	    tasks: [{title: "Scram task", description: "description task"}]
+	  })
+	})
+
   it("should have an id", async () => {
     expect(await project).to.have.property("_id")
   })
