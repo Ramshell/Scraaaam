@@ -1,45 +1,14 @@
 import chai from "chai"
-import Project from '../src/backend/models/Project'
-import Contributor from '../src/backend/models/Contributor'
-import Task from '../src/backend/models/Task'
-import mongoose from "mongoose"
-import mockgoose from "mockgoose"
+import Project from '../../../src/backend/models/Project'
+import Contributor from '../../../src/backend/models/Contributor'
+import Task from '../../../src/backend/models/Task'
+import { setupMocha } from "../../setup.js"
 const expect = chai.expect
 
-// before((done) => {
-// 	mockgoose.prepareStorage().then(function() {
-// 		mongoose.connect('mongodb://localhost/projects', function(err) {
-// 			done(err);
-// 		});
-// 	});
-// });
-//
-// after(() => {
-//   mockgoose.helper.reset()
-// })
-//
-// after((done) => {
-// 	if ( mockgoose.helper.isMocked() === true ) {
-// 		console.log("asd")
-// 		done()
-// 	}
-// })
 
 describe("Project with 1 task and 0 contributors", () => {
 
-
-	before("Mock mongoose", async() => {
-		await mockgoose(mongoose)
-		mongoose.connect('mongodb://localhost/projects')
-	})
-
-	after("Restore mongoose", done => {
-  	mongoose.unmock(done);
-	})
-
-	afterEach("Reset mock mongo database", done => {
-	  mockgoose.reset(done);
-	})
+	setupMocha()
 
 	let project
 
