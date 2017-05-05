@@ -1,8 +1,8 @@
 import chai from "chai"
-import Project from '../../../src/backend/models/Project'
-import Contributor from '../../../src/backend/models/Contributor'
-import Task from '../../../src/backend/models/Task'
-import { setupMocha } from "../../setup.js"
+import Project from '../../../../src/backend/models/Project'
+import Contributor from '../../../../src/backend/models/Contributor'
+import Task from '../../../../src/backend/models/Task'
+import { setupMocha } from "../../../setup.js"
 const expect = chai.expect
 
 

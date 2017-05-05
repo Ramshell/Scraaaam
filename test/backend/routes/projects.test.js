@@ -1,9 +1,9 @@
 import chai from "chai"
 import sinon from "sinon"
 import request from "supertest"
-import app from "../../src/backend/index"
+import app from "../../../src/backend/index"
 
-import { setupMocha } from "../setup"
+import { setupMocha } from "../../setup"
 
 const expect = chai.expect
 
