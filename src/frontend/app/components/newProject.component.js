@@ -16,7 +16,7 @@ export default class NewProjectComponent {
     this.data = { title: '', description: '', contributors: [], tasks: [] }
   }
 
-  create_project() {
+  createProject() {
     this.projectService.create(this.data)
     this.setNewProject()
   }

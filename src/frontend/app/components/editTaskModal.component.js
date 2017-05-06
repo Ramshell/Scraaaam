@@ -1,21 +1,15 @@
 import {Component} from '@angular/core';
-import EditTaskTemplate from '../templates/editTask.html';
+import EditTaskModalTemplate from '../templates/editTaskModal.html';
 import ProjectService from '../services/project.service';
 
 @Component({
-    selector: 'editTask',
+    selector: 'editTaskModal',
     inputs: ['task', 'data'],
-    template: EditTaskTemplate
+    template: EditTaskModalTemplate
 })
-export default class EditTaskComponent {
+export default class EditTaskModalComponent {
     constructor(projectService) {
         this.projectService = projectService
-    }
-
-    ngOnInit() {
-        if(!this.data) {
-            this.data = this.projectService.newTaskTemplate()
-        }
     }
 
     submitTask() {
@@ -25,6 +19,6 @@ export default class EditTaskComponent {
     }
 }
 
-EditTaskComponent.parameters = [
+EditTaskModalComponent.parameters = [
     ProjectService
 ]
