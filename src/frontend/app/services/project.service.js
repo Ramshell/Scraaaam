@@ -45,7 +45,7 @@ export default class ProjectService {
             .catch(err => console.log(err))
     }
 
-    create_task(parentTask, task) {
+    createTask(parentTask, task) {
         const projId = this.getProjectIdFrom(parentTask)
         this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
@@ -63,7 +63,7 @@ export default class ProjectService {
             .catch(err => console.log(err))
     }
 
-    create_comment(task, comment) {
+    createComment(task, comment) {
         this.http.post(`/projects/${task.project._id}/tasks/${task._id}/comments`, JSON.stringify(comment), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
             .then(theComment => task.comments.push(theComment.json()))
@@ -100,7 +100,7 @@ export default class ProjectService {
 
     submitTask(parentTask, submitedTask) {
         if (!submitedTask._id) {
-            this.create_task(parentTask, submitedTask)
+            this.createTask(parentTask, submitedTask)
         } else {
             this.updateTask(parentTask, submitedTask)
         }
