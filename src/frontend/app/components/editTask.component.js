@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
-import NewTaskTemplate from '../templates/newTask.html';
+import EditTaskTemplate from '../templates/editTask.html';
 import ProjectService from '../services/project.service';
 
 @Component({
     selector: 'newTask',
     inputs: ['task'],
-    template: NewTaskTemplate
+    template: EditTaskTemplate
 })
-export default class NewTaskComponent {
+export default class EditTaskComponent {
     constructor(projectService) {
         this.setNewTask()
         this.projectService = projectService
@@ -25,6 +25,6 @@ export default class NewTaskComponent {
     }
 }
 
-NewTaskComponent.parameters = [
+EditTaskComponent.parameters = [
     ProjectService
 ]
