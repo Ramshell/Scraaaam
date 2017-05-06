@@ -1,7 +1,7 @@
 <div>
     <h4>Tasks:</h4>
     <div>
-    <newTask [task]="task"></newTask>
+        <editTask [task]="task"></editTask>
     </div>
     <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300">
         <ul class="list-group infinite">
@@ -9,7 +9,7 @@
                 <div class="panel-heading">Oops!</div>
                 <div class="panel-body">
                     <p>Nothing to see here, wanna add something?</p>
-                    <newTask [task]="task"></newTask>
+                    <editTask [task]="task"></editTask>
                 </div>
             </div>
             <task *ngFor="let item of task.tasks" [data]="item" (click)="change_task(item)">

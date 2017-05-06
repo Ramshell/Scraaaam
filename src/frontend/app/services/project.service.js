@@ -46,11 +46,20 @@ export default class ProjectService {
     }
 
     create_task(parentTask, task) {
-        console.log(parentTask)
-        const projId = parentTask.contributors ? parentTask._id : parentTask.project._id
+        const projId = this.getProjectIdFrom(parentTask)
         this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
             .then(theTask => parentTask.tasks.push(theTask.json()))
+            .catch(err => console.log(err))
+    }
+
+    updateTask(parentTask, task) {
+        const projId = this.getProjectIdFrom(parentTask)
+        this.http.put(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(_ => {
+                parentTask.tasks = parentTask.tasks.map(t => (t._id === task._id) ? task : t)
+            })
             .catch(err => console.log(err))
     }
 
@@ -83,6 +92,22 @@ export default class ProjectService {
                 this.updateProjects()
                 return Promise.resolve(projects)
             })
+    }
+
+    newTaskTemplate() {
+        return {title: '', description: ''}
+    }
+
+    submitTask(parentTask, submitedTask) {
+        if (!submitedTask._id) {
+            this.create_task(parentTask, submitedTask)
+        } else {
+            this.updateTask(parentTask, submitedTask)
+        }
+    }
+
+    getProjectIdFrom(task) {
+        return task.contributors ? task._id : task.project._id
     }
 }
 

@@ -3,25 +3,25 @@ import EditTaskTemplate from '../templates/editTask.html';
 import ProjectService from '../services/project.service';
 
 @Component({
-    selector: 'newTask',
-    inputs: ['task'],
+    selector: 'editTask',
+    inputs: ['task', 'data'],
     template: EditTaskTemplate
 })
 export default class EditTaskComponent {
     constructor(projectService) {
-        this.setNewTask()
         this.projectService = projectService
     }
 
-    setNewTask() {
-        this.data = {title: '', description: ''}
+    ngOnInit() {
+        if(!this.data) {
+            this.data = this.projectService.newTaskTemplate()
+        }
     }
 
-    create_task() {
+    submitTask() {
         if (!this.data.category)
             this.data.category = this.task.allowedCategories[0]
-        this.projectService.create_task(this.task, this.data)
-        this.setNewTask()
+        this.projectService.submitTask(this.task, this.data)
     }
 }
 
