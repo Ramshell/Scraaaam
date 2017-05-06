@@ -54,6 +54,7 @@ projectSchema.statics.addContributor = function (aProject, aContributor) {
             return aProject.save()
         })
         .then(savedProject => ({project: savedProject, contributor: contributor}))
+        .catch((err) => console.log(err))
 }
 
 const Project = BaseTask.discriminator('Project', projectSchema)

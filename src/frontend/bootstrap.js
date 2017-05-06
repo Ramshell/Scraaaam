@@ -6,9 +6,9 @@ import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {FormsModule} from '@angular/forms'
 import {HttpModule} from '@angular/http';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import 'rxjs/add/operator/toPromise'
 import {RouterModule}  from '@angular/router';
-import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {MomentModule} from 'angular2-moment';
 
 import TaskComponent from './app/components/task.component'
@@ -31,7 +31,7 @@ let router = RouterModule.forRoot([
 ], {useHash: true})
 
 @NgModule({
-    imports: [router, BrowserModule, FormsModule, HttpModule, InfiniteScrollModule, MomentModule],
+    imports: [router, BrowserModule, FormsModule, HttpModule, MomentModule, InfiniteScrollModule],
     styleUrls: ['./style.css', './buttons.css'],
     declarations: [
         TaskComponent,
