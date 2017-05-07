@@ -31,6 +31,11 @@ module.exports = {
         to: 'assets'
       }])
     ],
+    node: {
+      fs: "empty",
+      child_process: 'empty',
+      net: 'empty'
+    },
 
     devtool: '#inline-source-map'
 }
