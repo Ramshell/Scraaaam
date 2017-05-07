@@ -18,16 +18,27 @@ export default class TaskFrameComponent {
     }
 
     deleteContents() {
-        if (!this.data.parent)
-            this.projectService.deleteProject(this.activeViewService.activeProject._id)
-                .then(_ => this.router.navigateByUrl('/'))
-        else
+        if (this.data.project) {
             this.projectService.deleteTask(this.activeViewService.activeProject._id, this.data._id)
                 .then(parent => {
                         this.activeViewService.switchBack(this.index + 1)
                         this.activeViewService.updateActiveTask(parent)
                     }
                 )
+        } else {
+            this.projectService.deleteProject(this.activeViewService.activeProject._id)
+                .then(_ => this.router.navigateByUrl('/'))
+        }
+    }
+
+    editContents() {
+        if (this.data.project) {
+            const parentTask = this.activeViewService.taskHistory[this.index + 1]
+            this.activeViewService.edit(parentTask, this.data)
+        } else {
+
+        }
+        return true
     }
 }
 

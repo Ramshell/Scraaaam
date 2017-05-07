@@ -12,6 +12,9 @@
                     <button type="button" class="btn btn-default"
                             (click)="deleteContents()">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    <a type="button" class="btn btn-default" data-toggle="modal"
+                       [href]="(data.project) ? '#editTaskModal': '#editProjectModal'" (click)="editContents()">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>

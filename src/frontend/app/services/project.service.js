@@ -55,7 +55,7 @@ export default class ProjectService {
 
     updateTask(parentTask, task) {
         const projId = this.getProjectIdFrom(parentTask)
-        this.http.put(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
+        this.http.put(`/projects/${projId}/tasks/${task._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
             .then(_ => {
                 parentTask.tasks = parentTask.tasks.map(t => (t._id === task._id) ? task : t)
