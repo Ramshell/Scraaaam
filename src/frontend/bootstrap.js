@@ -23,6 +23,7 @@ import CommentListComponent from './app/components/commentList.component'
 import ActiveViewComponent from './app/components/activeView.component'
 import TaskFrameComponent from './app/components/taskFrame.component'
 import NewTaskButtonComponent from './app/components/newTaskButton.component'
+import NewProjectButtonComponent from './app/components/newProjectButton.component'
 
 let router = RouterModule.forRoot([
     {path: '', redirectTo: '/projects', pathMatch: 'full'},
@@ -35,6 +36,7 @@ let router = RouterModule.forRoot([
     imports: [router, BrowserModule, FormsModule, HttpModule, MomentModule, InfiniteScrollModule],
     styleUrls: ['./style.css', './buttons.css'],
     declarations: [
+        NewProjectButtonComponent,
         NewTaskButtonComponent,
         TaskComponent,
         TaskFrameComponent,

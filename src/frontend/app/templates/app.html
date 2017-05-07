@@ -21,8 +21,7 @@
                         <li *ngFor="let project of projectService.projects"><a
                                 [routerLink]="['/projects', project._id]">{{project.title}}</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a type="button" class="btn btn-default btn-inverse" data-toggle="modal" href="#editProjectModal">
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Project</a>
+                        <li><newProjectButton></newProjectButton>
                         </li>
                     </ul>
                 </li>
@@ -34,6 +33,6 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container-fluid">
-    <editProjectModal></editProjectModal>
+    <editProjectModal [data]="projectService.editedProject"></editProjectModal>
     <router-outlet></router-outlet>
 </div>

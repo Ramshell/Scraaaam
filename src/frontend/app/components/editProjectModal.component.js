@@ -1,27 +1,22 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import EditProjectModalTemplate from '../templates/editProjectModal.html';
 import ProjectService from '../services/project.service';
 
 @Component({
-  selector: 'editProjectModal',
-  template: EditProjectModalTemplate
+    selector: 'editProjectModal',
+    inputs: ['data'],
+    template: EditProjectModalTemplate
 })
 export default class EditProjectModalComponent {
-  constructor(projectService) {
-    this.setNewProject()
-    this.projectService = projectService
-  }
+    constructor(projectService) {
+        this.projectService = projectService
+    }
 
-  setNewProject() {
-    this.data = { title: '', description: '', contributors: [], tasks: [] }
-  }
-
-  createProject() {
-    this.projectService.create(this.data)
-    this.setNewProject()
-  }
+    submitProject() {
+        this.projectService.submitProject(this.data)
+    }
 }
 
 EditProjectModalComponent.parameters = [
-  [ProjectService]
+    [ProjectService]
 ]

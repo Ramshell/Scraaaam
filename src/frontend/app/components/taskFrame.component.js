@@ -36,7 +36,7 @@ export default class TaskFrameComponent {
             const parentTask = this.activeViewService.taskHistory[this.index + 1]
             this.activeViewService.edit(parentTask, this.data)
         } else {
-
+            this.projectService.editedProject = this.data
         }
         return true
     }

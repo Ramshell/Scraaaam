@@ -6,6 +6,7 @@ export default class ProjectService {
 
     constructor(http) {
         this.http = http
+        this.editedProject = {}
         this._filter = ''
         this._allProjects = []
         this.projects = []
@@ -40,6 +41,15 @@ export default class ProjectService {
             .toPromise()
             .then(theProject => {
                 this._allProjects.push(theProject.json());
+                this.updateProjects()
+            })
+            .catch(err => console.log(err))
+    }
+
+    update(project) {
+        this.http.put(`/projects/${project._id}`).toPromise()
+            .then(_ => {
+                this._allProjects = this._allProjects.map(p => (p._id === project._id) ? project : p)
                 this.updateProjects()
             })
             .catch(err => console.log(err))
@@ -98,11 +108,23 @@ export default class ProjectService {
         return {title: '', description: ''}
     }
 
+    newProjectTemplate() {
+        return {title: '', description: ''}
+    }
+
     submitTask(parentTask, submitedTask) {
         if (!submitedTask._id) {
             this.createTask(parentTask, submitedTask)
         } else {
             this.updateTask(parentTask, submitedTask)
+        }
+    }
+
+    submitProject(project) {
+        if (project._id) {
+            this.update(project)
+        } else {
+            this.create(project)
         }
     }
 
