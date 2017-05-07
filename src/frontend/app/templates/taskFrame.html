@@ -1,8 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 {{data.category}}: {{data.title}}
+            </div>
+            <div class="col-sm-3">
+                Subtareas: {{categoryDetailText}}
             </div>
             <div class="col-sm-3 pull-right">
                 <div class="btn-group">
@@ -20,6 +23,6 @@
         </div>
     </div>
     <div class="panel-body">
-        {{data.description}}
+        <p>{{data.description}}</p>
     </div>
 </div>

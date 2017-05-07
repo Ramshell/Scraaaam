@@ -59,7 +59,10 @@ export default class ProjectService {
         const projId = this.getProjectIdFrom(parentTask)
         this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
-            .then(theTask => parentTask.tasks.push(theTask.json()))
+            .then(theTask => {
+                parentTask.tasks.push(theTask.json())
+                parentTask.frame.updateCategoryDetail()
+            })
             .catch(err => console.log(err))
     }
 
