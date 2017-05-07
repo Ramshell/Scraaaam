@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import NewProjectTemplate from '../templates/newProject.html';
+import EditProjectModalTemplate from '../templates/editProjectModal.html';
 import ProjectService from '../services/project.service';
 
 @Component({
-  selector: 'newProject',
-  template: NewProjectTemplate
+  selector: 'editProjectModal',
+  template: EditProjectModalTemplate
 })
-export default class NewProjectComponent {
+export default class EditProjectModalComponent {
   constructor(projectService) {
     this.setNewProject()
     this.projectService = projectService
@@ -22,6 +22,6 @@ export default class NewProjectComponent {
   }
 }
 
-NewProjectComponent.parameters = [
+EditProjectModalComponent.parameters = [
   [ProjectService]
 ]

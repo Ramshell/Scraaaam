@@ -15,7 +15,7 @@ import TaskComponent from './app/components/task.component'
 import AppComponent from './app/components/app.component'
 import ProjectComponent from './app/components/project.component'
 import ProjectListComponent from './app/components/projectList.component'
-import NewProjectComponent from './app/components/newProject.component'
+import EditProjectModalComponent from './app/components/editProjectModal.component'
 import EditTaskModalComponent from './app/components/editTaskModal.component'
 import TaskListComponent from './app/components/taskList.component'
 import CommentComponent from './app/components/comment.component'
@@ -43,7 +43,7 @@ let router = RouterModule.forRoot([
         CommentComponent,
         TaskListComponent,
         EditTaskModalComponent,
-        NewProjectComponent,
+        EditProjectModalComponent,
         ProjectListComponent,
         ProjectComponent,
         AppComponent
