@@ -47,7 +47,7 @@ export default class ProjectService {
     }
 
     update(project) {
-        this.http.put(`/projects/${project._id}`).toPromise()
+        this.http.put(`/projects/${project._id}`, JSON.stringify(project), {headers: {'Content-Type': 'application/json'}}).toPromise()
             .then(_ => {
                 this._allProjects = this._allProjects.map(p => (p._id === project._id) ? project : p)
                 this.updateProjects()
@@ -113,10 +113,10 @@ export default class ProjectService {
     }
 
     submitTask(parentTask, submitedTask) {
-        if (!submitedTask._id) {
-            this.createTask(parentTask, submitedTask)
-        } else {
+        if (submitedTask._id) {
             this.updateTask(parentTask, submitedTask)
+        } else {
+            this.createTask(parentTask, submitedTask)
         }
     }
 
