@@ -107,7 +107,7 @@ export default class ProjectService {
     }
 
     getProjectIdFrom(task) {
-        return task.contributors ? task._id : task.project._id
+        return task.project ? task.project._id : task._id
     }
 }
 

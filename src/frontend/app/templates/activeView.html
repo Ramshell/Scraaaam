@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-sm-9">
-        <ul class="list-group">
+    <div class="col-sm-9" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300">
+        <ul class="list-group infinite">
             <taskFrame *ngFor="let task of activeViewService.taskHistory; let i = index"
                        [data]="task"
                        [index]="i"
