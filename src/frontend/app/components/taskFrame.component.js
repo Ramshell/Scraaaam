@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import TaskFrameTemplate from '../templates/taskFrame.html';
 import ProjectService from "../services/project.service";
 import ActiveViewService from "../services/activeView.service";
-import {Router} from "@angular/router/src/router";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'taskFrame',

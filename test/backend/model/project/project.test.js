@@ -8,7 +8,7 @@ const expect = chai.expect
 
 describe("Project with 1 task and 0 contributors", () => {
 
-	setupMocha()
+	setupMocha();
 
 	let project
 
