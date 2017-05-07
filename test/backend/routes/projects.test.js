@@ -1,17 +1,15 @@
 import chai from "chai"
 import sinon from "sinon"
 import request from "supertest"
-import app from "../../../src/backend/index"
-
 import { setupMocha } from "../../setup"
-
+import app from "../../../src/backend/app"
 const expect = chai.expect
 
 describe("All routes", () => {
 
-	setupMocha();
+	setupMocha()
 
-	describe("POST /porjects", () => {
+	describe("POST /projects", () => {
 
 		it("Un proyecto comun", async() => {
 			const response = await request(app)

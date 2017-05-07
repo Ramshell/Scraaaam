@@ -1,21 +1,18 @@
-import mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import mongoose from "mongoose"
+import mockgoose from "mockgoose"
 
-let mockgoose = new Mockgoose(mongoose);
 
 export function setupMocha() {
   before("Mock mongoose", async() => {
-    await mockgoose.prepareStorage().then(() => {
-  	mongoose.createConnection('mongodb://localhost/projects');
-  	mongoose.connection.on('connected', () => {
-    	  console.log('db connection is now open');
-    	});
-    });
-  })
+		await mockgoose(mongoose)
+    mongoose.connect('mongodb://localhost/projects')
+	})
 
-  afterEach("Reset mock mongo database", done => {
-    mockgoose.helper.reset().then(() => {
-      done()
-    });
-  })
+	after("Restore mongoose", done => {
+  	mongoose.unmock(done);
+	})
+
+	afterEach("Reset mock mongo database", done => {
+	  mockgoose.reset(done);
+	})
 }
