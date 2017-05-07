@@ -1,7 +1,7 @@
 import chai from "chai"
 import sinon from "sinon"
-import ProjectService from "../../src/frontend/app/services/project.service"
-import { setupBackendApp } from "../setup"
+import ProjectService from "../../../src/frontend/app/services/project.service"
+import { setupBackendApp } from "../../setup"
 
 const expect = chai.expect
 
