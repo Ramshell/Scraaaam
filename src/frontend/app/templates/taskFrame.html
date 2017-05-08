@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" (click)="activeViewService.switchBack(index)">
         <div class="row">
             <div class="col-sm-3">
                 {{data.category}}: {{data.title}}
@@ -22,7 +22,10 @@
             </div>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" data-toggle="collapse" [attr.data-target]="'#'+index">
         <p>{{data.description}}</p>
+        <div class="container collapse" [attr.id]="index">
+            Comments here!
+        </div>
     </div>
 </div>

@@ -56,3 +56,11 @@ textarea {
 #partial {
   height: 45vh;
 }
+
+.panel-heading:hover {
+  background-color: #e6e6e6;
+}
+
+.panel-body:hover {
+  background-color: #e6e6e6;
+}

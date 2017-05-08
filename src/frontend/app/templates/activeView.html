@@ -4,7 +4,6 @@
             <taskFrame *ngFor="let task of activeViewService.taskHistory; let i = index"
                        [data]="task"
                        [index]="i"
-                       (click)="activeViewService.switchBack(i)"
             ></taskFrame>
         </ul>
     </div>
