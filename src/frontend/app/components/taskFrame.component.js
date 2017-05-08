@@ -16,6 +16,7 @@ export default class TaskFrameComponent {
         this.activeViewService = activeViewService
         this.router = router
         this.categoryDetailText = ''
+        this.hideComments = true
     }
 
     ngOnInit() {
@@ -27,7 +28,7 @@ export default class TaskFrameComponent {
         const detail = this.data.tasks.reduce((acc, task) => {
             acc[task.category] = ++acc[task.category] || 1
             return acc
-        },{})
+        }, {})
         this.categoryDetailText = Object.keys(detail).map(key => `${detail[key]} ${key}`).join(', ')
     }
 
@@ -54,6 +55,11 @@ export default class TaskFrameComponent {
             this.projectService.editedProject = this.data
         }
         return true
+    }
+
+    toggleComments(event) {
+        event.stopPropagation()
+        this.hideComments = !this.hideComments
     }
 }
 
