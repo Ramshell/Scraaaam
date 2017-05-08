@@ -14,11 +14,16 @@ commentSchema.pre('remove', function (next) {
 })
 
 commentSchema.methods.delete = function () {
-    this.remove()
+    return this.remove()
 }
 
-commentSchema.statics.fullCreate = function (data) {
-    return this.create(data)
+commentSchema.statics.fullCreate = function (task, data) {
+    let aComment
+    return this.create(data).then(someComment => {
+        aComment = someComment
+        task.comments.push(someComment)
+        task.save()
+    }).then(someTask => aComment)
 }
 
 const Comment = mongoose.model('Comment', commentSchema)

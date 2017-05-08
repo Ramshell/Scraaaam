@@ -15,14 +15,9 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     let aComment
-    Comment.fullCreate(req.body)
-        .then(someComment => {
-            aComment = someComment
-            req.aTask.comments.push(someComment)
-            req.aTask.save()
-        })
-        .then(someTask => res.status(201).json(aComment))
-        .catch(next)
+    Comment.fullCreate(req.aTask, req.body)
+    .then(aComment => res.status(201).json(aComment))
+    .catch(next)
 })
 
 export default router

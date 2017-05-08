@@ -3,5 +3,12 @@
     <p>{{data.description}}</p>
     <div class="panel-footer">
         <small *ngIf="data.category" class="list-group-item-footer">{{data.category}}</small>
+        <div class="col-sm-3 pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default"
+                        (click)="deleteContents(data, parent)">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+            </div>
+        </div>
     </div>
 </a>

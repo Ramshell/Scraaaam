@@ -12,7 +12,7 @@ contributorSchema.pre('remove', function (next) {
 })
 
 contributorSchema.methods.delete = function () {
-    this.remove()
+    return this.remove()
 }
 
 contributorSchema.statics.fullCreate = function (data) {
