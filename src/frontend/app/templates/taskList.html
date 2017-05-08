@@ -12,7 +12,7 @@
                     <newTaskButton></newTaskButton>
                 </div>
             </div>
-            <task *ngFor="let item of task.tasks" [data]="item" (click)="change_task(item)">
+            <task *ngFor="let item of task.tasks" [data]="item" [parent]="task" (click)="change_task(item)">
             </task>
         </ul>
     </div>
