@@ -1,26 +1,28 @@
-<div class="row">
-    <div class="col-sm-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{data.category}}: {{data.title}}
-                    </div>
-                    <div class="col-sm-3 pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default"
-                                    [routerLink]="['/projects', activeViewService.activeProject._id, 'tasks', data._id]">
-                                <span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default"
-                                    (click)="deleteContents()">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-3">
+                {{data.category}}: {{data.title}}
+            </div>
+            <div class="col-sm-3">
+                Subtareas: {{categoryDetailText}}
+            </div>
+            <div class="col-sm-3 pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default"
+                            [routerLink]="['/projects', activeViewService.activeProject._id, 'tasks', data._id]">
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default"
+                            (click)="deleteContents()">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    <a type="button" class="btn btn-default" data-toggle="modal"
+                       [href]="(data.project) ? '#editTaskModal': '#editProjectModal'" (click)="editContents()">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 </div>
             </div>
-            <div class="panel-body">
-                {{data.description}}
-            </div>
         </div>
+    </div>
+    <div class="panel-body">
+        <p>{{data.description}}</p>
     </div>
 </div>

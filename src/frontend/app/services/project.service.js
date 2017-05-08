@@ -6,6 +6,7 @@ export default class ProjectService {
 
     constructor(http) {
         this.http = http
+        this.editedProject = {}
         this._filter = ''
         this._allProjects = []
         this.projects = []
@@ -45,16 +46,37 @@ export default class ProjectService {
             .catch(err => console.log(err))
     }
 
-    create_task(parentTask, task) {
-        console.log(parentTask)
-        const projId = parentTask.contributors ? parentTask._id : parentTask.project._id
-        this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
-            .toPromise()
-            .then(theTask => parentTask.tasks.push(theTask.json()))
+    update(project) {
+        this.http.put(`/projects/${project._id}`, JSON.stringify(project), {headers: {'Content-Type': 'application/json'}}).toPromise()
+            .then(_ => {
+                this._allProjects = this._allProjects.map(p => (p._id === project._id) ? project : p)
+                this.updateProjects()
+            })
             .catch(err => console.log(err))
     }
 
-    create_comment(task, comment) {
+    createTask(parentTask, task) {
+        const projId = this.getProjectIdFrom(parentTask)
+        this.http.post(`/projects/${projId}/tasks/${parentTask._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(theTask => {
+                parentTask.tasks.push(theTask.json())
+                parentTask.frame.updateCategoryDetail()
+            })
+            .catch(err => console.log(err))
+    }
+
+    updateTask(parentTask, task) {
+        const projId = this.getProjectIdFrom(parentTask)
+        this.http.put(`/projects/${projId}/tasks/${task._id}`, JSON.stringify(task), {headers: {'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(_ => {
+                parentTask.tasks = parentTask.tasks.map(t => (t._id === task._id) ? task : t)
+            })
+            .catch(err => console.log(err))
+    }
+
+    createComment(task, comment) {
         this.http.post(`/projects/${task.project._id}/tasks/${task._id}/comments`, JSON.stringify(comment), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
             .then(theComment => task.comments.push(theComment.json()))
@@ -83,6 +105,34 @@ export default class ProjectService {
                 this.updateProjects()
                 return Promise.resolve(projects)
             })
+    }
+
+    newTaskTemplate() {
+        return {title: '', description: ''}
+    }
+
+    newProjectTemplate() {
+        return {title: '', description: ''}
+    }
+
+    submitTask(parentTask, submitedTask) {
+        if (submitedTask._id) {
+            this.updateTask(parentTask, submitedTask)
+        } else {
+            this.createTask(parentTask, submitedTask)
+        }
+    }
+
+    submitProject(project) {
+        if (project._id) {
+            this.update(project)
+        } else {
+            this.create(project)
+        }
+    }
+
+    getProjectIdFrom(task) {
+        return task.project ? task.project._id : task._id
     }
 }
 

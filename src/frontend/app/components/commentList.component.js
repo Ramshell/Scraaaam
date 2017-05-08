@@ -14,8 +14,8 @@ export default class CommentListComponent {
     this.projectService = projectService;
   }
 
-  create_comment() {
-    this.projectService.create_comment(this.task, this.comment)
+  createComment() {
+    this.projectService.createComment(this.task, this.comment)
     this.comment = {content: ''}
   }
 }

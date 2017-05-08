@@ -7,6 +7,8 @@ export default class ActiveViewService {
         this.activeTask = {}
         this.activeProject = {}
         this.taskHistory = []
+        this.editedTask = {}
+        this.editedParent = {}
     }
 
     load(taskHistory) {
@@ -28,5 +30,10 @@ export default class ActiveViewService {
     switchBack(taskIndex) {
         this.taskHistory.splice(0, taskIndex)
         this.activeTask = this.taskHistory[0]
+    }
+
+    edit(parentTask, task) {
+        this.editedTask = task
+        this.editedParent = parentTask
     }
 }

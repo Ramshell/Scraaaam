@@ -15,19 +15,45 @@ export default class TaskFrameComponent {
         this.projectService = projectService
         this.activeViewService = activeViewService
         this.router = router
+        this.categoryDetailText = ''
+    }
+
+    ngOnInit() {
+        this.data.frame = this
+        this.updateCategoryDetail()
+    }
+
+    updateCategoryDetail() {
+        const detail = this.data.tasks.reduce((acc, task) => {
+            acc[task.category] = ++acc[task.category] || 1
+            return acc
+        },{})
+        this.categoryDetailText = Object.keys(detail).map(key => `${detail[key]} ${key}`).join(', ')
     }
 
     deleteContents() {
-        if (!this.data.parent)
-            this.projectService.deleteProject(this.activeViewService.activeProject._id)
-                .then(_ => this.router.navigateByUrl('/'))
-        else
+        if (this.data.project) {
             this.projectService.deleteTask(this.activeViewService.activeProject._id, this.data._id)
                 .then(parent => {
                         this.activeViewService.switchBack(this.index + 1)
                         this.activeViewService.updateActiveTask(parent)
+                        this.activeViewService.activeTask.frame.updateCategoryDetail()
                     }
                 )
+        } else {
+            this.projectService.deleteProject(this.activeViewService.activeProject._id)
+                .then(_ => this.router.navigateByUrl('/'))
+        }
+    }
+
+    editContents() {
+        if (this.data.project) {
+            const parentTask = this.activeViewService.taskHistory[this.index + 1]
+            this.activeViewService.edit(parentTask, this.data)
+        } else {
+            this.projectService.editedProject = this.data
+        }
+        return true
     }
 }
 

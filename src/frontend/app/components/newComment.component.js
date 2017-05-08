@@ -17,8 +17,8 @@ export default class NewCommentComponent {
     this.data = { content: '' }
   }
 
-  create_comment() {
-    this.projectService.create_comment(this.task, this.data)
+  createComment() {
+    this.projectService.createComment(this.task, this.data)
     this.setNewComment()
   }
 }
