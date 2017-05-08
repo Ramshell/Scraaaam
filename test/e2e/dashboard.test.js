@@ -15,11 +15,11 @@ describe("Main page", () => {
 
     await browser.takeScreenshot()
 
-    await element(by.css("projectlist a[href='#newProject']")).click()
+    await element(by.css("projectlist newprojectbutton a")).click()
 
-    element(by.css("newproject input[name=title]")).sendKeys("ProtractorProject")
-    element(by.css("newproject textarea[name=description]")).sendKeys("this is actually being saved")
-    await element(by.css("newproject form button")).click()
+    element(by.css("editprojectmodal input[name=title]")).sendKeys("ProtractorProject")
+    element(by.css("editprojectmodal textarea[name=description]")).sendKeys("this is actually being saved")
+    await element(by.css("editprojectmodal form button")).click()
 
     const cantidad = await element.all(by.css("projectList project")).count()
     cantidad.should.be.equal(cantidadOriginal + 1)
