@@ -22,7 +22,7 @@ router.post('/', (req, res, next) =>
 
 router.get('/:aProject', (req, res, next) =>
     req.aProject.populate('tasks contributors').execPopulate()
-        .then(project => res.json(extendTask(project)))
+        .then(project => extendTask(project).then(extended => res.json(extended)))
         .catch(next)
 )
 

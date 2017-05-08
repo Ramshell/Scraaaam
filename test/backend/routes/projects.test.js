@@ -55,5 +55,39 @@ describe("All routes", () => {
 				expect(body).length(0)
 			})
 		})
+
+		describe("GET /projects/:aProject", () => {
+
+			it("Get a un proyecto en particular", async() => {
+				const body = response.body
+				response = await request(app)
+					.get(`/projects/${body._id}`)
+					.expect(200);
+
+				const theBody = response.body
+				expect(theBody._id).to.equal(body._id)
+				expect(theBody.title).to.equal(body.title)
+				expect(theBody).to.have.property("allowedCategories")
+			})
+		})
+
+		describe("PUT /projects/:aProject", () => {
+
+			it("Modificar un proyecto en particular", async() => {
+				let body = response.body
+				body.title = "Modified"
+				response = await request(app)
+					.put(`/projects/${body._id}`)
+					.send(body)
+					.expect(200);
+
+				response = await request(app)
+					.get(`/projects/${body._id}`)
+					.expect(200);
+
+				body = response.body
+				expect(body.title).to.equal("Modified")
+			})
+		})
 	})
 });
