@@ -15,13 +15,15 @@ import TaskComponent from './app/components/task.component'
 import AppComponent from './app/components/app.component'
 import ProjectComponent from './app/components/project.component'
 import ProjectListComponent from './app/components/projectList.component'
-import NewProjectComponent from './app/components/newProject.component'
-import NewTaskComponent from './app/components/newTask.component'
+import EditProjectModalComponent from './app/components/editProjectModal.component'
+import EditTaskModalComponent from './app/components/editTaskModal.component'
 import TaskListComponent from './app/components/taskList.component'
 import CommentComponent from './app/components/comment.component'
 import CommentListComponent from './app/components/commentList.component'
 import ActiveViewComponent from './app/components/activeView.component'
 import TaskFrameComponent from './app/components/taskFrame.component'
+import NewTaskButtonComponent from './app/components/newTaskButton.component'
+import NewProjectButtonComponent from './app/components/newProjectButton.component'
 
 let router = RouterModule.forRoot([
     {path: '', redirectTo: '/projects', pathMatch: 'full'},
@@ -34,14 +36,16 @@ let router = RouterModule.forRoot([
     imports: [router, BrowserModule, FormsModule, HttpModule, MomentModule, InfiniteScrollModule],
     styleUrls: ['./style.css', './buttons.css'],
     declarations: [
+        NewProjectButtonComponent,
+        NewTaskButtonComponent,
         TaskComponent,
         TaskFrameComponent,
         ActiveViewComponent,
         CommentListComponent,
         CommentComponent,
         TaskListComponent,
-        NewTaskComponent,
-        NewProjectComponent,
+        EditTaskModalComponent,
+        EditProjectModalComponent,
         ProjectListComponent,
         ProjectComponent,
         AppComponent
