@@ -57,9 +57,9 @@ export default class TaskFrameComponent {
         return true
     }
 
-    toggleComments(event) {
+    toggleComments(event, data) {
         event.stopPropagation()
-        this.hideComments = !this.hideComments
+        $(`#${data._id}`).collapse("toggle")
     }
 }
 
