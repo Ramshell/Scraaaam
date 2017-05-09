@@ -50,7 +50,7 @@ describe("Main page", () => {
 
       it("creates a task", async () => {
         const cantidadDeTasksOriginal = await element.all(by.css("tasklist task")).count()
-        await createTask("Task", "Task Rules", "low level description")
+        await createTask("Normal", "Task Rules", "low level description")
         const cantidadActual = await element.all(by.css("tasklist task")).count()
         cantidadActual.should.be.equal(cantidadDeTasksOriginal + 1)
       })
@@ -60,6 +60,16 @@ describe("Main page", () => {
         await element.all(by.css("tasklist task a button")).first().click()
         const cantidadActual = await element.all(by.css("tasklist task")).count()
         cantidadActual.should.be.equal(cantidadDeTasksOriginal - 1)
+      })
+
+      it("comment a task", async () => {
+        await element.all(by.css("tasklist task")).first().click()
+        await element.all(by.css("taskframe div[class='panel-heading'] button")).get(2).click()
+        const cantidadDeCommentsOriginal = await element.all(by.css("taskframe commentlist div[class='collapse in'] comment")).count()
+        await element(by.css("taskframe commentlist div[class='collapse in'] form textarea")).sendKeys("protractor comment")
+        await element(by.css("taskframe commentlist div[class='collapse in'] form button")).click()
+        const cantidadActual = await element.all(by.css("taskframe commentlist div[class='collapse in'] comment")).count()
+        cantidadActual.should.be.equal(cantidadDeCommentsOriginal + 1)
       })
     })
   })

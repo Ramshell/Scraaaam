@@ -49,12 +49,12 @@ textarea {
 
 .infinite {
   overflow-y: auto;
-  height: 70vh;
+  max-height: 70vh;
   bottom: 0;
 }
 
-#partial {
-  height: 45vh;
+.entire-page {
+  max-height: 90vh;
 }
 
 .panel-heading:hover {
