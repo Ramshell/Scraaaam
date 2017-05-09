@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" (click)="activeViewService.switchBack(index)">
         <div class="row">
             <div class="col-sm-3">
                 {{data.category}}: {{data.title}}
@@ -11,18 +11,23 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default"
                             [routerLink]="['/projects', activeViewService.activeProject._id, 'tasks', data._id]">
-                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
+                        <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></button>
                     <button type="button" class="btn btn-default"
                             (click)="deleteContents()">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     <a type="button" class="btn btn-default" data-toggle="modal"
                        [href]="(data.project) ? '#editTaskModal': '#editProjectModal'" (click)="editContents()">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                    <button type="button" class="btn btn-default" (click)="toggleComments($event)">
+                        <span *ngIf="hideComments" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                        <span *ngIf="!hideComments" class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     <div class="panel-body">
         <p>{{data.description}}</p>
+        <commentList [hidden]="hideComments" [task]="data"></commentList>
     </div>
 </div>

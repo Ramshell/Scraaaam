@@ -1,14 +1,16 @@
-<div *ngIf="task.comments && task.comments.length > 0">
-  <h4 *ngIf="task.comments.length > 0">Comments:</h4>
-  <ul *ngIf="task.comments.length > 0" id="partial" class="list-group infinite">
-    <comment *ngFor="let item of task.comments" [data]="item">
-    </comment>
-  </ul>
+<h4>Comments:</h4>
+<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300">
+    <ul class="list-group infinite">
+        <comment *ngFor="let item of task.comments" [data]="item">
+        </comment>
+    </ul>
 </div>
 <form class="form-group">
-  <div class="input-group">
-    <textarea class="form-control" [(ngModel)]="comment.content" placeholder="Comment" name="description"></textarea>
-    <button type="button" class="form-control btn btn-default btn-inverse" (click)="createComment()" aria-label="Left Align"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Add Comment
-    </button>
-  </div>
- </form>
+    <div class="input-group">
+        <textarea class="form-control" [(ngModel)]="comment.content" placeholder="Comment"
+                  name="description"></textarea>
+        <button type="button" class="form-control btn btn-default btn-inverse" (click)="createComment()"
+                aria-label="Left Align"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Add Comment
+        </button>
+    </div>
+</form>
