@@ -12,7 +12,7 @@
     "frontend": "node node_modules/webpack/bin/webpack.js --progress --watch",
     "initDatabase": "babel-node -- src/backend/initDatabase.js",
     "coverage-test": "NODE_ENV=test nyc npm test",
-    "report-coverage": "NODE_ENV=test nyc report --reporter=lcov > coverage.lcov && codecov",
+    "coverage": "nyc npm test && nyc report --reporter=lcov > coverage.lcov && codecov",
     "frontend-test": "karma start karma.conf.js",
     "e2e-test": "protractor protractor.conf.js"
   },
@@ -36,6 +36,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap-drawer": "^1.0.6",
     "chai": "^3.5.0",
+    "codecov": "^2.2.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.27.3",
     "es6-shim": "^0.35.3",
