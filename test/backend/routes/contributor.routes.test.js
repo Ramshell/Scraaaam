@@ -41,7 +41,7 @@ describe("All routes", () => {
 		})
 		describe("DELETE /contributors/:aContributor", () => {
 
-			it("Borrar una contributor", async() => {
+			it("Borrar un contributor", async() => {
 				response = await request(app)
 					.delete(`/contributors/${response.body._id}`)
 					.expect(202);
