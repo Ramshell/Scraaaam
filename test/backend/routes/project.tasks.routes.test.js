@@ -6,7 +6,7 @@ import app from "../../../src/backend/app"
 import Project from "../../../src/backend/models/Project"
 const expect = chai.expect
 
-describe.skip("All routes", () => {
+describe("All routes", () => {
 
 	setupMocha()
 
@@ -16,7 +16,7 @@ describe.skip("All routes", () => {
     project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
   })
 
-	describe("POST /projects/projectId/tasks", () => {
+	describe.skip("POST /projects/projectId/tasks", () => {
 
     beforeEach("starting with a project", async() => {
       response = await request(app)
