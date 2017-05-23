@@ -12,7 +12,7 @@
     "frontend": "node node_modules/webpack/bin/webpack --progress --watch",
     "initDatabase": "babel-node -- src/backend/initDatabase.js",
     "coverage-test": "NODE_ENV=test nyc npm test",
-    "coverage": "nyc npm test && nyc report --reporter=lcov > coverage.lcov && codecov",
+    "coverage": "nyc npm test && nyc report --reporter=lcov > coverage.lcov && codecov -t 5a185c4e-41f7-432d-868f-ce5bcf63e855",
     "frontend-test": "node --max_old_space_size=4096 node_modules/karma/bin/karma start karma.conf.js",
     "e2e-test": "protractor protractor.conf.js"
   },

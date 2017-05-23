@@ -26,7 +26,7 @@ describe("All routes", () => {
     })
 
 
-		it.skip("Una tarea comun", async() => {
+		it("Una tarea comun", async() => {
 
 			const body = response.body
 			expect(body).to.have.property("title", "This is a Scraam task!!")
