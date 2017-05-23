@@ -36,7 +36,7 @@ gulp.task('server', ['transpile'], () => {
 });
 
 gulp.task('backend-test', () =>
-	gulp.src('test/backend/*', {read: false})
+	gulp.src('test/backend/**/*.js', {read: false})
 		.pipe(mocha({
       compilers: 'js:babel-core/register',
       timeout: 120000,

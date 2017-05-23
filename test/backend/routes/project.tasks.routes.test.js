@@ -12,13 +12,10 @@ describe("All routes", () => {
 
   let response, project
 
-  beforeEach("starting with a project", async() => {
-    project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
-  })
-
 	describe("POST /projects/projectId/tasks", () => {
 
     beforeEach("starting with a project", async() => {
+			project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
       response = await request(app)
         .post(`/projects/${project._id}/tasks`)
         .send({ "title": "This is a Scraam task!!", "description": "Other The description"	})
@@ -29,15 +26,15 @@ describe("All routes", () => {
 		it("Una tarea comun", async() => {
 
 			const body = response.body
-			// expect(body).to.have.property("title", "This is a Scraam task!!")
-			// expect(body).to.have.property("description", "Other The description")
-			// expect(body).to.have.property("tasks").to.be.empty
-			// expect(body).to.have.property("_id")
+			expect(body).to.have.property("title", "This is a Scraam task!!")
+			expect(body).to.have.property("description", "Other The description")
+			expect(body).to.have.property("tasks").to.be.empty
+			expect(body).to.have.property("_id")
 		})
 
 		describe("GET /projects/:aProject/tasks", () => {
 
-			it.skip("Lista de tareas", async() => {
+			it("Lista de tareas", async() => {
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks`)
 					.expect(200);
@@ -48,7 +45,7 @@ describe("All routes", () => {
 		})
 		describe("DELETE /projects/:aProject/tasks/:aTask", () => {
 
-			it.skip("Borrar una tarea", async() => {
+			it("Borrar una tarea", async() => {
 				response = await request(app)
 					.delete(`/projects/${project._id}/tasks/${response.body._id}`)
 					.expect(200);
@@ -64,7 +61,7 @@ describe("All routes", () => {
 
 		describe("GET /projects/:aProject/tasks/:aTask", () => {
 
-			it.skip("Get a una tarea en particular", async() => {
+			it("Get a una tarea en particular", async() => {
 				const body = response.body
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks/${body._id}`)
@@ -76,7 +73,7 @@ describe("All routes", () => {
 				expect(theBody).to.have.property("allowedCategories")
 			})
 
-			it.skip("Get el history de una tarea en particular", async() => {
+			it("Get el history de una tarea en particular", async() => {
 				const body = response.body
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks/${body._id}/history`)
@@ -89,7 +86,7 @@ describe("All routes", () => {
 
 		describe("PUT /projects/:aProject/tasks/:aTask", () => {
 
-			it.skip("Modificar una tarea en particular", async() => {
+			it("Modificar una tarea en particular", async() => {
 				let body = response.body
 				body.title = "Modified"
 				response = await request(app)
