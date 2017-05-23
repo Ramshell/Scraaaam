@@ -16,7 +16,7 @@ describe("All routes", () => {
     project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
   })
 
-	describe.skip("POST /projects/projectId/tasks", () => {
+	describe("POST /projects/projectId/tasks", () => {
 
     beforeEach("starting with a project", async() => {
       response = await request(app)
@@ -26,7 +26,7 @@ describe("All routes", () => {
     })
 
 
-		it("Una tarea comun", async() => {
+		it.skip("Una tarea comun", async() => {
 
 			const body = response.body
 			expect(body).to.have.property("title", "This is a Scraam task!!")
@@ -37,7 +37,7 @@ describe("All routes", () => {
 
 		describe("GET /projects/:aProject/tasks", () => {
 
-			it("Lista de tareas", async() => {
+			it.skip("Lista de tareas", async() => {
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks`)
 					.expect(200);
@@ -48,7 +48,7 @@ describe("All routes", () => {
 		})
 		describe("DELETE /projects/:aProject/tasks/:aTask", () => {
 
-			it("Borrar una tarea", async() => {
+			it.skip("Borrar una tarea", async() => {
 				response = await request(app)
 					.delete(`/projects/${project._id}/tasks/${response.body._id}`)
 					.expect(200);
@@ -64,7 +64,7 @@ describe("All routes", () => {
 
 		describe("GET /projects/:aProject/tasks/:aTask", () => {
 
-			it("Get a una tarea en particular", async() => {
+			it.skip("Get a una tarea en particular", async() => {
 				const body = response.body
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks/${body._id}`)
@@ -76,7 +76,7 @@ describe("All routes", () => {
 				expect(theBody).to.have.property("allowedCategories")
 			})
 
-			it("Get el history de una tarea en particular", async() => {
+			it.skip("Get el history de una tarea en particular", async() => {
 				const body = response.body
 				response = await request(app)
 					.get(`/projects/${project._id}/tasks/${body._id}/history`)
@@ -89,7 +89,7 @@ describe("All routes", () => {
 
 		describe("PUT /projects/:aProject/tasks/:aTask", () => {
 
-			it("Modificar una tarea en particular", async() => {
+			it.skip("Modificar una tarea en particular", async() => {
 				let body = response.body
 				body.title = "Modified"
 				response = await request(app)
