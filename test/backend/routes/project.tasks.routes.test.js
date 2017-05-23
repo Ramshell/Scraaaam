@@ -31,7 +31,7 @@ describe("All routes", () => {
 			const body = response.body
 			expect(body).to.have.property("title", "This is a Scraam task!!")
 			expect(body).to.have.property("description", "Other The description")
-			expect(body).to.have.property("tasks").to.be.empty
+			// expect(body).to.have.property("tasks").to.be.empty
 			expect(body).to.have.property("_id")
 		})
 
