@@ -9,7 +9,7 @@ describe("All routes", () => {
 
 	setupMocha()
 
-	describe("POST /projects", () => {
+	describe.skip("POST /projects", () => {
 		let response
 
 		beforeEach("setting response", async() => {

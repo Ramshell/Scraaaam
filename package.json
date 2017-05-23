@@ -9,12 +9,12 @@
     "start": "babel-node -- src/backend/index.js",
     "backend-test": "node --max-old-space-size=4096 node_modules/mocha/bin/mocha test/backend/* --recursive --compilers js:babel-core/register --timeout 120000 --require babel-polyfill",
     "backend": "babel-node -- src/backend/index.js",
-    "frontend": "node node_modules/webpack/bin/webpack.js --progress --watch",
+    "frontend": "node node_modules/webpack/bin/webpack --progress --watch",
     "initDatabase": "babel-node -- src/backend/initDatabase.js",
     "coverage-test": "NODE_ENV=test nyc npm test",
     "coverage": "nyc npm test && nyc report --reporter=lcov > coverage.lcov && codecov",
     "frontend-test": "node --max_old_space_size=4096 node_modules/karma/bin/karma start karma.conf.js",
-    "e2e-test": "protractor protractor.conf.js"
+    "e2e-test": "protractor protractor.conf.js",
   },
   "repository": {
     "type": "git",
