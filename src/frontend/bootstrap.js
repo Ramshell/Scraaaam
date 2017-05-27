@@ -1,58 +1,67 @@
-import 'reflect-metadata'
-import 'zone.js'
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
+import 'reflect-metadata';
+import 'zone.js';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import {NgModule} from '@angular/core'
-import {BrowserModule} from '@angular/platform-browser'
-import {FormsModule} from '@angular/forms'
+import {ngModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import 'rxjs/add/operator/toPromise'
-import {RouterModule}  from '@angular/router';
+import 'rxjs/add/operator/toPromise';
+import {RouterModule} from '@angular/router';
 import {MomentModule} from 'angular2-moment';
 
-import TaskComponent from './app/components/task.component'
-import AppComponent from './app/components/app.component'
-import ProjectComponent from './app/components/project.component'
-import ProjectListComponent from './app/components/projectList.component'
-import EditProjectModalComponent from './app/components/editProjectModal.component'
-import EditTaskModalComponent from './app/components/editTaskModal.component'
-import TaskListComponent from './app/components/taskList.component'
-import CommentComponent from './app/components/comment.component'
-import CommentListComponent from './app/components/commentList.component'
-import ActiveViewComponent from './app/components/activeView.component'
-import TaskFrameComponent from './app/components/taskFrame.component'
-import NewTaskButtonComponent from './app/components/newTaskButton.component'
-import NewProjectButtonComponent from './app/components/newProjectButton.component'
+import taskComponent from './app/components/task.component';
+import appComponent from './app/components/app.component';
+import projectComponent from './app/components/project.component';
+import projectListComponent from './app/components/projectList.component';
+import editProjectModalComponent from
+  './app/components/editProjectModal.component';
+import editTaskModalComponent from './app/components/editTaskModal.component';
+import taskListComponent from './app/components/taskList.component';
+import commentComponent from './app/components/comment.component';
+import commentListComponent from './app/components/commentList.component';
+import activeViewComponent from './app/components/activeView.component';
+import taskFrameComponent from './app/components/taskFrame.component';
+import newTaskButtonComponent from './app/components/newTaskButton.component';
+import newProjectButtonComponent from
+  './app/components/newProjectButton.component';
 
 let router = RouterModule.forRoot([
     {path: '', redirectTo: '/projects', pathMatch: 'full'},
     {path: 'projects', component: ProjectListComponent},
     {path: 'projects/:id', component: ActiveViewComponent},
-    {path: 'projects/:id/tasks/:taskId', component: ActiveViewComponent}
-], {useHash: true})
+    {path: 'projects/:id/tasks/:taskId', component: ActiveViewComponent},
+], {useHash: true});
 
-@NgModule({
-    imports: [router, BrowserModule, FormsModule, HttpModule, MomentModule, InfiniteScrollModule],
+@ngModule({
+    imports: [
+      router,
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      MomentModule,
+      InfiniteScrollModule,
+    ],
     styleUrls: ['./style.css', './buttons.css'],
     declarations: [
-        NewProjectButtonComponent,
-        NewTaskButtonComponent,
-        TaskComponent,
-        TaskFrameComponent,
-        ActiveViewComponent,
-        CommentListComponent,
-        CommentComponent,
-        TaskListComponent,
-        EditTaskModalComponent,
-        EditProjectModalComponent,
-        ProjectListComponent,
-        ProjectComponent,
-        AppComponent
+        newProjectButtonComponent,
+        newTaskButtonComponent,
+        taskComponent,
+        taskFrameComponent,
+        activeViewComponent,
+        commentListComponent,
+        commentComponent,
+        taskListComponent,
+        editTaskModalComponent,
+        editProjectModalComponent,
+        projectListComponent,
+        projectComponent,
+        appComponent,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [appComponent],
 })
 class AppModule {
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -5,20 +5,20 @@ import ActiveViewService from '../services/activeView.service';
 
 @Component({
     selector: 'newTaskButton',
-    template: NewTaskButtonTemplate
+    template: NewTaskButtonTemplate,
 })
 export default class NewTaskButtonComponent {
     constructor(projectService, activeViewService) {
-        this.projectService = projectService
-        this.activeViewService = activeViewService
+        this.projectService = projectService;
+        this.activeViewService = activeViewService;
     }
 
     clicked() {
-        this.activeViewService.edit(this.activeViewService.activeTask, this.projectService.newTaskTemplate())
-        return true
+        this.activeViewService.edit(this.activeViewService.activeTask, this.projectService.newTaskTemplate());
+        return true;
     }
 }
 
 NewTaskButtonComponent.parameters = [
-    ProjectService, ActiveViewService
-]
+    ProjectService, ActiveViewService,
+];

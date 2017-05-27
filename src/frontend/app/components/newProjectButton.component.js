@@ -4,19 +4,19 @@ import ProjectService from '../services/project.service';
 
 @Component({
     selector: 'newProjectButton',
-    template: NewProjectButtonTemplate
+    template: NewProjectButtonTemplate,
 })
 export default class NewProjectButtonComponent {
     constructor(projectService) {
-        this.projectService = projectService
+        this.projectService = projectService;
     }
 
     clicked() {
-        this.projectService.editedProject = this.projectService.newProjectTemplate()
-        return true
+        this.projectService.editedProject = this.projectService.newProjectTemplate();
+        return true;
     }
 }
 
 NewProjectButtonComponent.parameters = [
-    ProjectService
-]
+    ProjectService,
+];

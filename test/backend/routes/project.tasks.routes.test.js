@@ -12,13 +12,10 @@ describe("All routes", () => {
 
   let response, project
 
-  beforeEach("starting with a project", async() => {
-    project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
-  })
-
 	describe("POST /projects/projectId/tasks", () => {
 
     beforeEach("starting with a project", async() => {
+			project = await Project.fullCreate({ "title": "This is Scraam!!", "description": "The description"	})
       response = await request(app)
         .post(`/projects/${project._id}/tasks`)
         .send({ "title": "This is a Scraam task!!", "description": "Other The description"	})
