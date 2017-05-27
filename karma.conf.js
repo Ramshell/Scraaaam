@@ -21,7 +21,6 @@ module.exports = (config) => {
       level: 'log', format: '%b %T: %m', terminal: true
     },
     port: 9876,
-    browsers: ['Chrome'],
     singleRun: true,
   })
 }
