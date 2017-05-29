@@ -32,6 +32,18 @@ describe("All routes", () => {
 			expect(body).to.have.property("_id")
 		})
 
+		describe("GET /projects/:aProject/tasks/all", () => {
+
+			it("Lista de tareas", async() => {
+				response = await request(app)
+					.get(`/projects/${project._id}/tasks/all`)
+					.expect(200);
+
+				const body = response.body
+				expect(body).length(1)
+			})
+		})
+
 		describe("GET /projects/:aProject/tasks", () => {
 
 			it("Lista de tareas", async() => {

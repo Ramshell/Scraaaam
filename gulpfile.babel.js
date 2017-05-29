@@ -33,6 +33,3 @@ gulp.task('all-non-e2e', ['frontend-components-test', 'backend-test']);
 
 gulp.task('coverage', () =>
   run('npm run coverage').exec());
-
-gulp.task('nyc-all-non-e2e', () =>
-  run('npm run coverage-test').exec());
