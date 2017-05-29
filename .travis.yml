@@ -10,5 +10,6 @@ install:
   - npm install
   - npm update
 script:
-  - node run gulp all-non-e2e
+  - npm run gulp all-non-e2e
+  - npm run gulp lint
 after_success: npm run gulp coverage
