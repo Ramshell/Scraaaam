@@ -33,7 +33,7 @@ gulp.task('frontend-all', ['frontend-components-test', 'frontend-e2e-test']);
 gulp.task('all-non-e2e', ['frontend-components-test', 'backend-test']);
 
 gulp.task('coverage', ['nyc-all-non-e2e'], () =>
-  gulp.src('./coverage/lcov.info').pipe(codecov()));
+  gulp.src('./coverage/lcov.info').pipe(codecov({token: '5a185c4e-41f7-432d-868f-ce5bcf63e855'})));
 
 gulp.task('nyc-all-non-e2e', () =>
   run('npm run coverage-test').exec());
