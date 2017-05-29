@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import ProjectListTemplate from '../templates/projectList.html';
 import ProjectService from '../services/project.service';
 
 
 @Component({
   selector: 'projectList',
-  template: ProjectListTemplate,
+  template: ProjectListTemplate
 })
 export default class ProjectListComponent {
   constructor(projectService) {
@@ -14,5 +14,5 @@ export default class ProjectListComponent {
 }
 
 ProjectListComponent.parameters = [
-  [ProjectService],
-];
+  [ProjectService]
+]

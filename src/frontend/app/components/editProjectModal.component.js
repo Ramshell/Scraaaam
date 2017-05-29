@@ -5,18 +5,18 @@ import ProjectService from '../services/project.service';
 @Component({
     selector: 'editProjectModal',
     inputs: ['data'],
-    template: EditProjectModalTemplate,
+    template: EditProjectModalTemplate
 })
 export default class EditProjectModalComponent {
     constructor(projectService) {
-        this.projectService = projectService;
+        this.projectService = projectService
     }
 
     submitProject() {
-        this.projectService.submitProject(this.data);
+        this.projectService.submitProject(this.data)
     }
 }
 
 EditProjectModalComponent.parameters = [
-    [ProjectService],
-];
+    [ProjectService]
+]
