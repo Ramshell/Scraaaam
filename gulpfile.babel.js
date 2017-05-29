@@ -36,4 +36,4 @@ gulp.task('coverage', ['nyc-all-non-e2e'], () =>
   gulp.src('./coverage/lcov.info').pipe(codecov()));
 
 gulp.task('nyc-all-non-e2e', () =>
-  return run('npm run coverage-test').exec());
+  run('npm run coverage-test').exec());
