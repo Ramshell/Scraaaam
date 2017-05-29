@@ -50,6 +50,7 @@
     "gulp-eslint": "^3.0.1",
     "gulp-live-server": "0.0.30",
     "gulp-mocha": "4.3.1",
+    "gulp-protractor": "^4.1.0",
     "html-webpack-plugin": "^2.28.0",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.4",
