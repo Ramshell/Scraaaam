@@ -6,7 +6,6 @@ import { server, transpile } from './gulp_scripts/server'
 import { backend_tests } from './gulp_scripts/backendTests'
 import { frontend_components_tests } from './gulp_scripts/components'
 import { initProtractor } from './gulp_scripts/protractor'
-import codecov from 'gulp-codecov'
 import run from 'gulp-run'
 
 
@@ -32,8 +31,8 @@ gulp.task('frontend-all', ['frontend-components-test', 'frontend-e2e-test']);
 
 gulp.task('all-non-e2e', ['frontend-components-test', 'backend-test']);
 
-gulp.task('coverage', ['nyc-all-non-e2e'], () =>
-  gulp.src('./coverage/lcov.info').pipe(codecov({token: '5a185c4e-41f7-432d-868f-ce5bcf63e855'})));
+gulp.task('coverage', () =>
+  run('npm run coverage').exec());
 
 gulp.task('nyc-all-non-e2e', () =>
   run('npm run coverage-test').exec());
