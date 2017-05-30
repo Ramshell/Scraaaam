@@ -10,5 +10,6 @@ install:
   - npm install
   - npm update
 script:
-  - node node_modules/gulp/bin/gulp.js backend-test
-after_success: npm run coverage
+  - npm run gulp all-non-e2e
+  - npm run gulp lint
+after_success: npm run gulp coverage
