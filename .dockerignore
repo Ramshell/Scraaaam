@@ -47,3 +47,9 @@ typings/
 .env
 .dockerignore
 Dockerfile
+.gitignore
+.travis.yml
+codecov.yml
+docker-compose.yml
+README.md
+dist/

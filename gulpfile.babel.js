@@ -2,7 +2,7 @@
 
 import gulp from 'gulp';
 import { lintTask } from './gulp_scripts/lintTask'
-import { server, transpile } from './gulp_scripts/server'
+import { hotServer, server, transpile } from './gulp_scripts/server'
 import { backend_tests } from './gulp_scripts/backendTests'
 import { frontend_components_tests } from './gulp_scripts/components'
 import { initProtractor } from './gulp_scripts/protractor'
@@ -19,7 +19,9 @@ gulp.task('lint', lintTask(dirs.src));
 
 gulp.task('transpile', transpile(dirs.src, dirs.dest));
 
-gulp.task('server', ['transpile'], server(dirs.src, dirs.dest));
+gulp.task('hot-server', ['transpile'], hotServer(dirs.src, dirs.dest));
+
+gulp.task('server', ['transpile'], server(dirs.dest));
 
 gulp.task('backend-test', backend_tests(dirs.test));
 

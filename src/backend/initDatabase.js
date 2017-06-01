@@ -75,7 +75,7 @@ const initDatabase = () => {
 function main() {
     const mongoose = require('mongoose')
 
-    mongoose.connect('mongodb://localhost/projects')
+    mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/projects')
         .then(mongoose.connection.dropDatabase())
         .then(_ => initDatabase())
         .then(_ => process.exit())

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 import app from "./app"
 
-mongoose.connect('mongodb://localhost/projects')
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/projects')
 
 
 const port = 3001
