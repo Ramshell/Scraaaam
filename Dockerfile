@@ -11,5 +11,4 @@ EXPOSE 3001
 
 COPY . .
 
-#ENTRYPOINT ["gulp", "server"]
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["gulp", "server"]
