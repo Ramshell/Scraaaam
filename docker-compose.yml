@@ -1,0 +1,14 @@
+mongo:
+  image: mongo
+  ports:
+    - "27018:27017"
+  command: "--smallfiles --logpath=/dev/null"
+
+app:
+  build: .
+  ports:
+    - "3001:3001"
+  links:
+    - mongo
+  environment:
+    MONGO_URL: 'mongodb://mongo/projects'

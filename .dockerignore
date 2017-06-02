@@ -1,0 +1,11 @@
+# Ignore everything by default and include only required files
+!/gulp_scripts
+!/src
+#!/test
+!.babelrc
+#!.eslintrc.js
+!gulpfile.babel.js
+#!karma.conf.js
+!package.json
+#!protractor.conf.js
+!webpack.config.js
