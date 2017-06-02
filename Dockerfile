@@ -11,4 +11,6 @@ EXPOSE 3001
 
 COPY . .
 
+RUN gulp build
+
 ENTRYPOINT ["gulp", "server"]

@@ -12,19 +12,21 @@ import run from 'gulp-run'
 
 const dirs = {
     src: 'src',
-    dest: 'dist',
+    dist: 'dist',
     test: 'test'
 };
 
 gulp.task('lint', lintTask(dirs.src));
 
-gulp.task('transpile', transpile(dirs.src, dirs.dest));
+gulp.task('transpile', transpile(dirs.src, dirs.dist));
 
-gulp.task('webpack', webpack(dirs.src, dirs.dest));
+gulp.task('webpack', webpack(dirs.src, dirs.dist));
 
-gulp.task('hot-server', ['transpile', 'webpack'], hotServer(dirs.src, dirs.dest));
+gulp.task('build', ['transpile', 'webpack'])
 
-gulp.task('server', ['transpile', 'webpack'], server(dirs.dest));
+gulp.task('hot-server', ['build'], hotServer(dirs.src, dirs.dist));
+
+gulp.task('server', server(dirs.dist));
 
 gulp.task('backend-test', backend_tests(dirs.test));
 
