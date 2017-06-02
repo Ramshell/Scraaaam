@@ -3,7 +3,7 @@ import eslint from 'gulp-eslint'
 
 export function lintTask(src){
   return () => {
-    gulp.src([`${src}/**/*.js`,'!node_modules/**'])
+    return gulp.src([`${src}/**/*.js`,'!node_modules/**'])
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
