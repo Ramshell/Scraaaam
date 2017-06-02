@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run backend-test && npm run frontend-test",
     "all_tests": "npm test && npm run e2e-test",
-    "start": "babel-node -- src/backend/index.js",
+    "start": "node dist/backend/index.js",
     "backend-test": "node --max-old-space-size=4096 node_modules/mocha/bin/mocha test/backend/* --recursive --compilers js:babel-core/register --timeout 120000 --require babel-polyfill",
     "backend": "babel-node -- src/backend/index.js",
     "frontend": "node node_modules/webpack/bin/webpack --progress --watch",
